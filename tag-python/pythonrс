@@ -24,7 +24,7 @@ def _CommandLineCaller(cls):
 
 
 @_CommandLineCaller
-class _H(object):
+class _h(object):
     def __init__(self, *argv, **kwargv):
         import pydoc
         self.pydoc = pydoc
@@ -36,19 +36,17 @@ class _H(object):
     def __call__(self, *argv, **kwargv):
         self.pydoc.help(*argv, **kwargv)
 
-h = _h = _H()
-del _H
+h = _h = _h()
 
 
 @_CommandLineCaller
-class _D(object):
+class _d(object):
     def __call__(self, *argv, **kwargv):
         if len(argv) + len(list(kwargv.keys())) == 0:
             return sorted(globals().keys())
         return dir(*argv, **kwargv)
 
-d = _d = _D()
-del _D
+d = _d = _d()
 
 
 # autocomplete and history
@@ -77,28 +75,22 @@ del autocomplete_and_history
 
 @_CommandLineCaller
 class _ls(object):
-    def __init__(self):
-        import os
-        self.ls = os.listdir
-
     def __repr__(self):
-        pprint(self.ls("."))
+        pprint(os.listdir("."))
         return ''
 
     def __call__(self, path="."):
-        import os
-        import glob
         try:
-            return self.ls(path)
+            return os.listdir(path)
         except OSError:
             candidates = glob.glob(path + "/")
             if len(candidates) == 0:
                 candidates = glob.glob(path + "*/")
                 if len(candidates) == 0:
-                    self.ls(path)  # let it raise an error
+                    os.listdir(path)  # let it raise an error
             if len(candidates) == 1:
                 dir = candidates[0]
-                return self.ls(dir)
+                return os.listdir(dir)
             else:
                 raise OSError("[ls error] more than one directory matches")
 
@@ -132,3 +124,18 @@ class _cd(object):
                 raise OSError("[cd error] more than one directory matches")
 
 cd = _cd = _cd()
+
+
+# Enable Pretty Printing for stdout
+###################################
+def displayhook(value):
+    if value is not None:
+        try:
+            import __builtin__
+            __builtin__._ = value
+        except ImportError:
+            __builtins__._ = value
+        pprint(value)
+
+sys.displayhook = displayhook
+del displayhook
