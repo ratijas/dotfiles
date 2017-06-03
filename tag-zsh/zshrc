@@ -106,7 +106,7 @@ if which cmatrix &>/dev/null ; then
   cmatrix -abs
 fi
 
-# export PYTHONSTARTUP="$HOME/.pysrc.py"
+[ -f $HOME/.pythonrс ] && export PYTHONSTARTUP="$HOME/.pythonrс"
 
 export PATH=/home/pitoo/mxe/mxe/usr/bin:$PATH
 export PATH=/home/pitoo/projects/llvm/install/bin:$PATH
