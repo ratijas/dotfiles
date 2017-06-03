@@ -1,0 +1,112 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+setopt appendhistory autocd
+# End of lines configured by zsh-newuser-install
+
+# zgen
+## set up
+ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
+## load
+source "${HOME}/.zgen/zgen.zsh"
+
+# if the init scipt doesn't exist
+if ! zgen saved; then
+    echo "Creating a zgen save"
+
+    ## oh-my-zsh plugins
+    zgen oh-my-zsh
+    zgen oh-my-zsh lib/git.zsh
+    zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/docker
+    zgen oh-my-zsh plugins/docker-compose
+    zgen oh-my-zsh plugins/lol
+    zgen oh-my-zsh plugins/pip
+    zgen oh-my-zsh plugins/python
+    zgen oh-my-zsh plugins/sublime
+    zgen oh-my-zsh plugins/sudo
+
+    ## prezto
+    #zgen prezto
+    #zgen prezto editor key-bindings 'emacs'
+    #zgen prezto command-not-found
+
+    zgen load zsh-users/zsh-autosuggestions
+    zgen load zsh-users/zsh-completions
+    zgen load zsh-users/zsh-history-substring-search
+    zgen load zsh-users/zsh-syntax-highlighting
+
+    ## utils
+    zgen load skx/sysadmin-util
+    zgen load supercrabtree/k
+
+    ## the fuck (table flipping)
+    zgen load https://gist.github.com/dee411200dbb134ac51ecdad3368bacd.git
+
+    ## updates
+    zgen load unixorn/autoupdate-zgen
+
+    ## theme
+    zgen load bhilburn/powerlevel9k powerlevel9k
+
+    ## done
+    zgen save
+fi
+
+# configure plugins
+
+## https://github.com/zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+## prefix mathing
+bindkey '\eOA' history-beginning-search-backward
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\eOB' history-beginning-search-forward
+bindkey '\e[B' history-beginning-search-forward
+
+## powerlevel9k
+DEFAULT_USER=$(whoami)
+
+# user stuff
+## ssh keys
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+## env
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# finally
+clear
+if which ponysay &>/dev/null ; then
+    ponysay -q
+fi
+
+alias zshconfig="$VISUAL $HOME/.zshrc"
+alias k="k -h"
+alias sshtk="ssh root@ratijas.tk"
+alias /autism="sudo pacman -Suy"
+
+if which cmatrix &>/dev/null ; then
+  cmatrix -abs
+fi
+
+# export PYTHONSTARTUP="$HOME/.pysrc.py"
+
+export PATH=/home/pitoo/mxe/mxe/usr/bin:$PATH
+export PATH=/home/pitoo/projects/llvm/install/bin:$PATH
