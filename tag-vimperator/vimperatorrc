@@ -1,0 +1,205 @@
+let mapleader = ","
+
+" Russian language keyboard mappings (UTF-8)
+map ё \
+map ] `
+map й q
+map ц w
+map у e
+map к r
+map е t
+map н y
+map г u
+map ш i
+map щ o
+map з p
+map х [
+map ъ ]
+map ф a
+map ы s
+map в d
+map а f
+map п g
+map р h
+map о j
+map л k
+map д l
+map ж ;
+map э '
+map я z
+map ч x
+map с c
+map м v
+map и b
+map т n
+map ь m
+map б ,
+map ю .
+map Ё |
+map Й Q
+map Ц W
+map У E
+map К R
+map Е T
+map Н Y
+map Г U
+map Ш I
+map Щ O
+map З P
+map Х {
+map Ъ }
+map Ф A
+map [ `
+map Ы S
+map В D
+map А F
+map П G
+map Р H
+map О J
+map Л K
+map Д L
+map Ж :
+map Э "
+map Я Z
+map Ч X
+map С C
+map М V
+map И B
+map Т N
+map Ь M
+map Б <
+map Ю >
+map п% g$
+map п0 g0
+map п<C-g> g<C-g>
+map пБ g<lt>
+map пИ gB
+map пА gF
+map пР gH
+map пЗ gP
+map пЕ gT
+map пГ gU
+map пи gb
+map па gf
+map пп gg
+map пр gh
+map пш gi
+map пт gn
+map пщ go
+map пк gr
+map пе gt
+map пг gu
+map пц gw
+map хх [[
+map ъъ ]]
+" End of the mapping
+
+" fix russian tab group switch
+nmap <C-]> <C-`>
+
+" overwrite firefox standard search bar
+nmap <M-F> <Esc>/
+vmap <M-F> <Esc>/
+imap <M-F> <Esc>/
+cmap <M-F> <Esc>/
+
+nmap <M-G> <Esc>n
+vmap <M-G> <Esc>n
+imap <M-G> <Esc>n
+cmap <M-G> <Esc>n
+
+nmap <leader>/ :set hlsearch!<CR>
+
+" 'new' in firefox 42.
+" https://github.com/vimperator/vimperator-labs/issues/219
+set! browser.tabs.closeWindowWithLastTab=false
+map <M-w> :q<CR>
+imap <M-w> <Esc>:q<CR>
+
+" rearranging tabs
+map <C-S-Left> :tabmove -1<CR>
+map <C-S-Right> :tabmove +1<CR>
+
+" fixing up for linux
+noremap <A-[> :back<CR>
+inoremap <A-[> <Esc>:back<CR>
+
+noremap <A-]> :forward<CR>
+inoremap <A-]> <Esc>:forward<CR>
+
+noremap <A-{> :tabprevious<CR>
+inoremap <A-{> <Esc>:tabprevious<CR>
+
+noremap <A-}> :tabnext<CR>
+inoremap <A-}> <Esc>:tabnext<CR>
+
+" insert space after cursor
+inoremap <S-Space> <Space><Left>
+
+" fullscreen, no toolbars
+" n for None
+noremap <leader>n :set gui=none<CR>
+" a for All
+noremap <leader>a :set gui=all,nobookmarks,nomenu<CR>
+" statusline in fullscreen
+" js statusline.setVisibility(statusline.setVisibility.TOGGLE)
+
+" some websites stealing keys
+map <M-;> :
+imap <M-;> <Esc>:
+
+" switch search engines
+noremap <leader>s :set defsearch=
+set defsearch=go
+
+" shortcut
+nnoremap x :ju<CR>
+
+" firefox panorama (groups of tabs)
+noremap <M-e> :panorama<Space>
+inoremap <M-e> <Esc>:panorama<Space>
+noremap <Silent> <M-S-e> :panorama<Space>switch<Space>
+inoremap <Silent> <M-S-e> <Esc>:panorama<Space>switch<Space>
+
+" window fullscreen
+map <Silent> <Leader>fs :set<Space>fs!<CR>
+
+" get rid of scrollbars!
+set noscrollbars
+
+" add ssl connection status indicator
+set status="input,location,bookmark,history,tabcount,ssl,position"
+
+colorscheme indigo-fx3
+
+set editor="/usr/bin/vim"
+
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+set animations
+
+command -description "edit .vimperatorrc in default vim" Vimpconfig silent !echo "exec vim -c 'set ft=vim' ~/.vimperatorrc" > "$TMPDIR"/vimpconfig.command; chmod +x "$TMPDIR"/vimpconfig.command; open "$TMPDIR"/vimpconfig.command;
+
+" directory tree
+silent cd ~
+
+" encoding shortcut
+command! -nargs 0 UTF8 set encoding=UTF-8
+nmap <M-S-u> :UTF8<CR>
+
+" switch to last active tab when closing one
+nmap d :bdelete<Space>-select<Space>lastactive<CR>
+
+set urlseparator=,,\\s
+
+set passthrough
+
+noremap <C-p> <C-c><Esc>p
+noremap <C-S-p> <C-c><Esc>P
+
+nmap gor :buffer! radio<CR>
+imap -urls codetest\\.edu\\.innopolis\\.ru @t <Esc>@t<Esc>
+
+noremap <C-S-c> <C-c>
+
+javascript liberator.beep = function() { return false; }
