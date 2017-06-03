@@ -11,6 +11,10 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 setopt appendhistory autocd
 # End of lines configured by zsh-newuser-install
 
+# zsh
+# When searching for history entries in the line editor, do not display duplicates of a line previously found, even if the duplicates are not contiguous.
+setopt HIST_FIND_NO_DUPS
+
 # zgen
 ## set up
 ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
