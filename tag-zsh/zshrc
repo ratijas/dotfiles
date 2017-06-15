@@ -85,6 +85,9 @@ bindkey '\e[B' history-beginning-search-forward
 
 ## powerlevel9k
 DEFAULT_USER=$(whoami)
+if [ "$DEFAULT_USER" = 'root' ]; then
+  DEFAULT_USER=
+fi
 
 # user stuff
 ## ssh keys
