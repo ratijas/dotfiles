@@ -3,3 +3,5 @@
 	email = ratijas@users.noreply.github.com
 [core]
 	quotepath = false
+[credential]
+	helper = cache --timeout=3600
