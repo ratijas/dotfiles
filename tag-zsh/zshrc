@@ -15,9 +15,14 @@ setopt appendhistory autocd
 # When searching for history entries in the line editor, do not display duplicates of a line previously found, even if the duplicates are not contiguous.
 setopt HIST_FIND_NO_DUPS
 
+# PATH
+export PATH=$HOME/mxe/mxe/usr/bin:$PATH
+export PATH=$HOME/projects/llvm/install/bin:$PATH
+
 # zgen
 ## set up
 ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
+
 ## load
 source "${HOME}/.zgen/zgen.zsh"
 
@@ -86,7 +91,7 @@ bindkey '\e[B' history-beginning-search-forward
 ## powerlevel9k
 DEFAULT_USER=$(whoami)
 if [ "$DEFAULT_USER" = 'root' ]; then
-  DEFAULT_USER=
+    DEFAULT_USER=
 fi
 
 # user stuff
@@ -98,23 +103,21 @@ ssh-add ~/.ssh/id_rsa
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# finally
-clear
-if which ponysay &>/dev/null ; then
-    ponysay -q
-fi
-
-alias zshconfig="$VISUAL $HOME/.zshrc"
-alias k="k -h"
-alias sshtk="ssh root@ratijas.tk"
-alias /autism="sudo pacman -Suy"
-alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
-
-if which cmatrix &>/dev/null ; then
-  cmatrix -abs
-fi
-
+## python
 [ -f $HOME/.pythonrc ] && export PYTHONSTARTUP="$HOME/.pythonrc"
 
-export PATH=/home/pitoo/mxe/mxe/usr/bin:$PATH
-export PATH=/home/pitoo/projects/llvm/install/bin:$PATH
+## functions & aliases
+if [ -f ~/.zsh_aliases ]; then
+    . ~/.zsh_aliases
+fi
+
+function run-if-exist() {
+    if type "$1" &>/dev/null; then
+	"$@"
+    fi
+}
+
+# finally, welcome page
+clear
+run-if-exist ponysay -q
+run-if-exist cmatrix -abs

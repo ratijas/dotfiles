@@ -1,0 +1,6 @@
+alias zshconfig="$VISUAL $HOME/.zshrc"
+alias k="k -h"
+alias sshtk="ssh root@ratijas.tk"
+alias /autism="sudo pacman -Suy"
+alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
+alias urldecode='python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"'
