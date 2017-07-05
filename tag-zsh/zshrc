@@ -93,6 +93,8 @@ DEFAULT_USER=$(whoami)
 if [ "$DEFAULT_USER" = 'root' ]; then
     DEFAULT_USER=
 fi
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time battery)
+POWERLEVEL9K_MODE='awesome-fontconfig'
 
 # user stuff
 ## ssh keys
