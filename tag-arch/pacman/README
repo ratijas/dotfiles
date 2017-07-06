@@ -1,0 +1,7 @@
+this directory contains groups of [useful] packages from arch linux repository and AUR.
+
+each group is a directory with files named as the corresponding packages.
+
+such structure is way cooler than storing everything in plain text file because, while it is still easy to batch install, it allows you to write comments inside each file.  probably it will be used to store post-install scripts someday.
+
+run `pacaur -Sy $(ls some-group)` to install.
