@@ -4,3 +4,12 @@ alias sshtk="ssh root@ratijas.tk"
 alias /autism="sudo pacman -Suy"
 alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
 alias urldecode='python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"'
+
+if type xdg-open &>/dev/null; then
+    function open() {
+        if [ $# = 0 ]; then
+            1=.
+        fi
+        xdg-open "$@"
+    }
+fi

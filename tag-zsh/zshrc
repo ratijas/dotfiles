@@ -33,6 +33,7 @@ if ! zgen saved; then
     ## oh-my-zsh plugins
     zgen oh-my-zsh
     zgen oh-my-zsh lib/git.zsh
+    zgen oh-my-zsh plugins/archlinux
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/docker
@@ -93,6 +94,7 @@ DEFAULT_USER=$(whoami)
 if [ "$DEFAULT_USER" = 'root' ]; then
     DEFAULT_USER=
 fi
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time battery)
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
@@ -115,11 +117,11 @@ fi
 
 function run-if-exist() {
     if type "$1" &>/dev/null; then
-	"$@"
+        "$@"
     fi
 }
 
 # finally, welcome page
 clear
 run-if-exist ponysay -q
-run-if-exist cmatrix -abs
+run-if-exist cmatrix -absu 3
