@@ -3,7 +3,10 @@
 	email = ratijas@users.noreply.github.com
 [core]
 	quotepath = false
+	autocrlf = input
 [credential]
 	helper = cache --timeout=3600
 [color]
 	ui = auto
+[diff]
+	submodule = log
