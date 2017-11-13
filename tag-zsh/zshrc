@@ -14,10 +14,12 @@ setopt appendhistory autocd
 # zsh
 # When searching for history entries in the line editor, do not display duplicates of a line previously found, even if the duplicates are not contiguous.
 setopt HIST_FIND_NO_DUPS
+setopt histignorespace
 
 # PATH
 export PATH=$HOME/mxe/mxe/usr/bin:$PATH
 export PATH=$HOME/projects/llvm/install/bin:$PATH
+export PATH=$PATH:$HOME/bin
 
 # zgen
 ## set up
@@ -34,6 +36,7 @@ if ! zgen saved; then
     zgen oh-my-zsh
     zgen oh-my-zsh lib/git.zsh
     zgen oh-my-zsh plugins/archlinux
+    zgen oh-my-zsh plugins/cargo
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/docker
@@ -41,8 +44,10 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/lol
     zgen oh-my-zsh plugins/pip
     zgen oh-my-zsh plugins/python
+    zgen oh-my-zsh plugins/rust
     zgen oh-my-zsh plugins/sublime
     zgen oh-my-zsh plugins/sudo
+    zgen oh-my-zsh plugins/z
 
     ## prezto
     #zgen prezto

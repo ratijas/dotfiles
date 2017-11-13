@@ -1,10 +1,12 @@
 alias zshconfig="$VISUAL $HOME/.zshrc"
 alias k="k -h"
 alias sshtk="ssh root@ratijas.tk"
+alias sshos="ssh i.tkachenko@osc-1.edu.innopolis.ru"
 alias /autism="pacaur -Suy"
 alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
 alias urldecode='python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"'
 alias mnt="cd /var/run/media/$USER"
+alias :q="exit"
 
 if type xdg-open &>/dev/null; then
     function open() {
