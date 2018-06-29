@@ -21,6 +21,12 @@ export PATH=$HOME/mxe/mxe/usr/bin:$PATH
 export PATH=$HOME/projects/llvm/install/bin:$PATH
 export PATH=$PATH:$HOME/bin
 
+
+# running on MSYS2
+if (( ! $+commands[sudo] )); then
+    alias sudo=/usr/bin/env
+fi
+
 # zgen
 ## set up
 ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
