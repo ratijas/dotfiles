@@ -17,10 +17,10 @@ setopt HIST_FIND_NO_DUPS
 setopt histignorespace
 
 # PATH
-export PATH=$HOME/mxe/mxe/usr/bin:$PATH
-export PATH=$HOME/projects/llvm/install/bin:$PATH
 export PATH=$PATH:$HOME/bin
 
+# android sdk & PATH
+export ANDROID_HOME=/opt/android-sdk
 
 # running on MSYS2
 if (( ! $+commands[sudo] )); then
@@ -48,17 +48,13 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/docker
     zgen oh-my-zsh plugins/docker-compose
     zgen oh-my-zsh plugins/lol
+    zgen oh-my-zsh plugins/mvn
     zgen oh-my-zsh plugins/pip
     zgen oh-my-zsh plugins/python
     zgen oh-my-zsh plugins/rust
     zgen oh-my-zsh plugins/sublime
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/z
-
-    ## prezto
-    #zgen prezto
-    #zgen prezto editor key-bindings 'emacs'
-    #zgen prezto command-not-found
 
     zgen load zsh-users/zsh-autosuggestions
     zgen load zsh-users/zsh-completions
@@ -84,6 +80,8 @@ fi
 
 # configure plugins
 
+bindkey '^i' expand-or-complete-prefix
+
 ## https://github.com/zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -100,6 +98,27 @@ bindkey '\e[A' history-beginning-search-backward
 bindkey '\eOB' history-beginning-search-forward
 bindkey '\e[B' history-beginning-search-forward
 
+## syntax highlighting
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+## File manager key binds
+
+cdUndoKey() {
+    popd
+    zle       reset-prompt
+}
+
+cdParentKey() {
+    pushd ..
+    zle      reset-prompt
+}
+
+zle -N                 cdParentKey
+zle -N                 cdUndoKey
+bindkey '^[[1;3A'      cdParentKey
+bindkey '^[[1;3D'      cdUndoKey
+
 ## powerlevel9k
 DEFAULT_USER=$(whoami)
 if [ "$DEFAULT_USER" = 'root' ]; then
@@ -110,9 +129,76 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
 # user stuff
+
+# Share memory functions
+function share-set() {
+    local name="$1"
+    local value="$2"
+    local storage=/dev/shm/"$USER"/env/"$name"
+    if [ ! -e "$(dirname "$storage")" ]; then
+        mkdir -p -m 0600 /dev/shm/"$USER" || return 1
+        mkdir -p -m 0600 /dev/shm/"$USER"/env || return 1
+        mkdir -p -m 0600 "$(dirname "$storage")" || return 1
+    fi
+    print -n -- "$value" > "$storage" || { echo "$0: Share variable '$name' can not be written to!" 1>&2; return 1 }
+}
+function share-get() {
+    local name="$1"
+    local storage=/dev/shm/"$USER"/env/"$name"
+    cat "$storage" 2>/dev/null || { echo "$0: Share variable '$name' is not defined!" 1>&2; return 1 }
+}
+function share-env-get() {
+    local name
+    local value
+    for name in "${@[@]}"; do
+        value="$(share-get "$name")" || return 1
+        typeset -g "$name"="$value"
+    done
+}
+function share-env-set() {
+    local name
+    for name in "${@[@]}"; do
+        typeset -p "$name" &> /dev/null || { echo "$0: Environment variable '$name' is not defined!" 1>&2; return 1 }
+        share-set "$name" "${(P)${name}}"
+    done
+}
+function share-list() {
+    local storage=/dev/shm/"$USER"/env/
+    ls "$storage"
+}
+function unshare() {
+    local name
+    local storage=/dev/shm/"$USER"/env
+    for name in "$storage/${@[@]}"; do
+        rm -f "$name"
+    done
+}
+
 ## ssh keys
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+function ssh-init() {
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
+}
+function ssh-uninit() {
+    unshare SSH_AUTH_SOCK SSH_AGENT_PID
+}
+
+share-env-get SSH_AUTH_SOCK SSH_AGENT_PID 2> /dev/null || {
+    ssh-init
+    share-env-set SSH_AUTH_SOCK SSH_AGENT_PID
+}
+
+## open new tabs in the same directory
+local CWD_FILE=yakuake-cwd
+if [ $(basename "/"$(ps -f -p $(cat /proc/$(echo $$)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //')) = "yakuake" ]; then
+    local cwd && cwd=$(share-get "$CWD_FILE" &> /dev/null) && cd "$cwd"
+    unset cwd
+fi
+function store-cwd() {
+    share-set "$CWD_FILE" "$(pwd)"
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook -Uz chpwd store-cwd
 
 ## env
 export VISUAL=vim
@@ -120,6 +206,18 @@ export EDITOR="$VISUAL"
 
 ## python
 [ -f $HOME/.pythonrc ] && export PYTHONSTARTUP="$HOME/.pythonrc"
+
+### virtualenvwrapper
+export WORKON_HOME="$HOME/.virtualenv"
+mkdir -p "$WORKON_HOME"
+source /usr/bin/virtualenvwrapper.sh
+
+## command not found
+[ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
+## consul
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/consul consul
 
 ## functions & aliases
 if [ -f ~/.zsh_aliases ]; then
@@ -133,6 +231,6 @@ function run-if-exist() {
 }
 
 # finally, welcome page
-clear
-run-if-exist ponysay -q
-run-if-exist cmatrix -absu 3
+# clear
+# run-if-exist ponysay -q
+# run-if-exist cmatrix -absu 3

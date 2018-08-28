@@ -1,12 +1,16 @@
 alias zshconfig="$VISUAL $HOME/.zshrc"
 alias k="k -h"
 alias sshtk="ssh root@ratijas.tk"
-alias sshos="ssh i.tkachenko@osc-1.edu.innopolis.ru"
 alias /autism="pacaur -Suy"
 alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
-alias urldecode='python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"'
+alias urldecode='python -c "import sys; from urllib.parse import unquote_plus as up; sys.stdout.write(up(sys.stdin.read()))"'
 alias mnt="cd /var/run/media/$USER"
+alias p="cd ~/projects"
 alias :q="exit"
+alias https='http --default-scheme=https'
+function weather() { curl http://wttr.in/"$1" }
+alias inno="weather Иннополис"
+alias :path="echo \"$PATH\" | tr ':' '\n'"
 
 if type xdg-open &>/dev/null; then
     function open() {
@@ -16,3 +20,9 @@ if type xdg-open &>/dev/null; then
         xdg-open "$@"
     }
 fi
+
+function fix-intellij() {
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+    # prepend
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS)
+}
