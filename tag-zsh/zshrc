@@ -18,6 +18,7 @@ setopt histignorespace
 
 # PATH
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin
 
 # android sdk & PATH
 export ANDROID_HOME=/opt/android-sdk
@@ -190,15 +191,21 @@ share-env-get SSH_AUTH_SOCK SSH_AGENT_PID 2> /dev/null || {
 
 ## open new tabs in the same directory
 local CWD_FILE=yakuake-cwd
-if [ $(basename "/"$(ps -f -p $(cat /proc/$(echo $$)/stat | cut -d \  -f 4) | tail -1 | sed 's/^.* //')) = "yakuake" ]; then
-    local cwd && cwd=$(share-get "$CWD_FILE" &> /dev/null) && cd "$cwd"
-    unset cwd
-fi
+
+function restore-cwd(){
+    ### can not trust $SHLVL
+    local tree="$(pstree -ls $$)"
+    local zsh_lvl=$(echo "$tree" | grep -o zsh | wc -l)
+    if echo "$tree" | grep -q "yakuake" && [[ "$zsh_lvl" = "1" ]]; then
+        local cwd && cwd=$(share-get "$CWD_FILE" 2> /dev/null) && cd "$cwd"
+    fi
+}
 function store-cwd() {
     share-set "$CWD_FILE" "$(pwd)"
 }
 autoload -Uz add-zsh-hook
 add-zsh-hook -Uz chpwd store-cwd
+restore-cwd
 
 ## env
 export VISUAL=vim
