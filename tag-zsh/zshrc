@@ -136,9 +136,9 @@ function share-set() {
     local value="$2"
     local storage=/dev/shm/"$USER"/env/"$name"
     if [ ! -e "$(dirname "$storage")" ]; then
-        mkdir -p -m 0600 /dev/shm/"$USER" || return 1
-        mkdir -p -m 0600 /dev/shm/"$USER"/env || return 1
-        mkdir -p -m 0600 "$(dirname "$storage")" || return 1
+        mkdir -p -m 0700 /dev/shm/"$USER" || return 1
+        mkdir -p -m 0700 /dev/shm/"$USER"/env || return 1
+        mkdir -p -m 0700 "$(dirname "$storage")" || return 1
     fi
     print -n -- "$value" > "$storage" || { echo "$0: Share variable '$name' can not be written to!" 1>&2; return 1 }
 }
@@ -210,7 +210,7 @@ export EDITOR="$VISUAL"
 ### virtualenvwrapper
 export WORKON_HOME="$HOME/.virtualenv"
 mkdir -p "$WORKON_HOME"
-source /usr/bin/virtualenvwrapper.sh
+[ -r /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
 
 ## command not found
 [ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && source /usr/share/doc/pkgfile/command-not-found.zsh
