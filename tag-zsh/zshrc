@@ -194,9 +194,10 @@ local CWD_FILE=yakuake-cwd
 
 function restore-cwd(){
     ### can not trust $SHLVL
-    local tree="$(pstree -ls $$)"
-    local zsh_lvl=$(echo "$tree" | grep -o zsh | wc -l)
-    if echo "$tree" | grep -q "yakuake" && [[ "$zsh_lvl" = "1" ]]; then
+    local zsh_lvl=$(pstree -ls $$ | grep -o zsh | wc -l)
+    pstree -ls $$ | grep -q "yakuake"
+    local in_terminal=$?
+    if (( zsh_lvl == 1 & in_terminal == 0 )); then
         local cwd && cwd=$(share-get "$CWD_FILE" 2> /dev/null) && cd "$cwd"
     fi
 }
