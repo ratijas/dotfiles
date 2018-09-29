@@ -1,16 +1,21 @@
 alias zshconfig="$VISUAL $HOME/.zshrc"
+alias zshaliases="$VISUAL $HOME/.zsh_aliases"
 alias k="k -h"
 alias sshtk="ssh root@ratijas.tk"
 alias /autism="pacaur -Suy"
 alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
 alias urldecode='python -c "import sys; from urllib.parse import unquote_plus as up; sys.stdout.write(up(sys.stdin.read()))"'
-alias mnt="cd /var/run/media/$USER"
+export mnt="/var/run/media/$USER"
+function mnt() { cd "$mnt" }
 alias p="cd ~/projects"
 alias :q="exit"
 alias https='http --default-scheme=https'
 function weather() { curl http://wttr.in/"$1" }
 alias inno="weather Иннополис"
-alias :path="echo \"$PATH\" | tr ':' '\n'"
+function :path() { local ptr="${1:-PATH}"; local str="${(P)ptr}"; echo "$str" | tr ':' '\n' }
+alias :p=":path"
+function ihaskell-notebook() { workon ihaskell && stack exec -- jupyter-notebook --notebook-dir=$HOME/projects/haskell }
+alias sen="docker run -v /var/run/docker.sock:/run/docker.sock -it --rm -e TERM tomastomecek/sen"
 
 if type xdg-open &>/dev/null; then
     function open() {

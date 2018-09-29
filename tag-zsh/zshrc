@@ -19,6 +19,7 @@ setopt histignorespace
 # PATH
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cabal/bin
 
 # android sdk & PATH
 export ANDROID_HOME=/opt/android-sdk
