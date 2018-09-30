@@ -1,8 +1,8 @@
 :m - Prelude
 :m + GOA
 
-import System.FilePath
-import System.Directory
+import qualified System.FilePath
+import qualified System.Directory
 
 :unset +t
 :{
