@@ -1,4 +1,10 @@
-module DotfilesUtil (colourPrint) where
+module DotfilesUtil
+( colourize
+, colourShow
+, colourPrint
+, colourPutStr
+, colourPutStrLn
+) where
 
 import qualified IPPrint
 import qualified Language.Haskell.HsColour as HsColour
@@ -16,5 +22,17 @@ colourPrefs = HsColour.defaultColourPrefs {
 --  HsColour.keyglyph = [HsColour.Foreground HsColour.White]
 }
 
-colourPrint :: Show a => a -> IO ();
-colourPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) colourPrefs False False "" False . IPPrint.pshow
+colourize :: String -> String
+colourize = HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) colourPrefs False False "" False
+
+colourShow :: Show a => a -> String
+colourShow = colourize . IPPrint.pshow
+
+colourPrint :: Show a => a -> IO ()
+colourPrint = colourPutStrLn . IPPrint.pshow
+
+colourPutStr :: String -> IO ()
+colourPutStr = putStr . colourize
+
+colourPutStrLn :: String -> IO ()
+colourPutStrLn = putStrLn . colourize
