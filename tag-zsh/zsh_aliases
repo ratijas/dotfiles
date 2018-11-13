@@ -31,3 +31,20 @@ function fix-intellij() {
     # prepend
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS)
 }
+
+function installed-size() {
+    # Show total installed size of all packages on Arch Linux system in human-readable format.
+    #
+    # Usage:
+    #   installed-size [units]
+    #
+    # Options:
+    #   units
+    #       (Documentation from `man 1 expac`)
+    #       Format packages size in SI units according to `units`. Valid options are:
+    #           B, K, M, G, T, P, E, Z, Y
+    #       Optional, defaults to `G`.
+    #
+    local units="${1:-G}"
+    expac -H "$units" '%m' | awk '{sum += $1} END {print sum, $2}'
+}
