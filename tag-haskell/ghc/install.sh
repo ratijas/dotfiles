@@ -1,11 +1,12 @@
 #!/bin/sh
 
-resolver=lts-12.16
+resolver="${resolver:-lts-12.16}"
 
 stack --resolver="${resolver}" setup
 
 stack --resolver="${resolver}" install \
 	ipprint-0.6 \
+    hscolour-1.24.4 \
 	sr-extra-1.46.3.2 \
 	Unixutils-1.54.1 \
 	goa-3.3 \

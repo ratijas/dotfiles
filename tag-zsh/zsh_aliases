@@ -15,6 +15,7 @@ alias inno="weather Иннополис"
 function :path() { local ptr="${1:-PATH}"; local str="${(P)ptr}"; echo "$str" | tr ':' '\n' }
 alias :p=":path"
 function ihaskell-notebook() { workon ihaskell && stack exec -- jupyter-notebook --notebook-dir=$HOME/projects/haskell }
+alias ghc-find="stack exec -- ghc-pkg find-module --simple-output"
 alias sen="docker run -v /var/run/docker.sock:/run/docker.sock -it --rm -e TERM tomastomecek/sen"
 
 if type xdg-open &>/dev/null; then
