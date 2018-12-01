@@ -16,18 +16,38 @@ function :path() { local ptr="${1:-PATH}"; local str="${(P)ptr}"; echo "$str" | 
 alias :p=":path"
 function ihaskell-notebook() { workon ihaskell && stack exec -- jupyter-notebook --notebook-dir=$HOME/projects/haskell }
 alias ghc-find="stack exec -- ghc-pkg find-module --simple-output"
-function hoogle-repl() {
-    while vared -p '%%%F{green}hoogle%f ' -e -c HOOGLE_QUERY
+
+function any-repl () {
+    if [ $# -lt 2 ]; then
+        echo "Usage: $0 prompt cmd [arg ...]"
+        exit 1
+    fi
+    typeset prompt=$1
+    shift
+    typeset -a cmdargs=($@)
+    typeset -g query
+    typeset query_prompt='%%%F{green}'$prompt'%f '
+
+    while vared -p $query_prompt -e -c query
     do
-        if [[ ${HOOGLE_QUERY} =~ '^\s*$' ]] ; then
-            HOOGLE_QUERY=""         # no input
-        elif [[ ${HOOGLE_QUERY} =~ '^\s*-' ]]; then
-            hoogle ${=HOOGLE_QUERY} # raw parameters
+        if [[ $query =~ '^\s*$' ]]
+        then
+            query=""
         else
-            hoogle $HOOGLE_QUERY    # single string query
+            $cmdargs $query
         fi
     done
 }
+function _hoogle-repl-internal() {
+    # $1 is a query
+    if [[ $1 =~ '^\s*-' ]]; then
+        hoogle ${=1} # raw parameters
+    else
+        hoogle $1    # single string query
+    fi
+}
+alias hoogle-repl="any-repl hoogle _hoogle-repl-internal"
+
 alias sen="docker run -v /var/run/docker.sock:/run/docker.sock -it --rm -e TERM tomastomecek/sen"
 
 if type xdg-open &>/dev/null; then
