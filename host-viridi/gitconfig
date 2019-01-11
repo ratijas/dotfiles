@@ -4,6 +4,7 @@
 [core]
 	quotepath = false
 	autocrlf = input
+	excludesfile = ~/.gitignore
 [credential]
 	helper = cache --timeout=3600
 [color]
