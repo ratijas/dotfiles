@@ -147,6 +147,9 @@ fi
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time battery)
 POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
 
 # user stuff
 
