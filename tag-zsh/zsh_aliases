@@ -1,7 +1,15 @@
 alias zshconfig="$VISUAL $HOME/.zshrc"
 alias zshaliases="$VISUAL $HOME/.zsh_aliases"
 alias k="k -h"
+
 alias sshtk="ssh root@ratijas.tk"
+
+function ssh-sailfish() { ssh -p "$1" -i /opt/SailfishOS/SDK/vmshare/ssh/private_keys/"$2"/"$3" "$3"@localhost }
+alias ssh-sailfish-emu-nemo="ssh-sailfish 2223 SailfishOS_Emulator nemo"
+alias ssh-sailfish-emu-root="ssh-sailfish 2223 SailfishOS_Emulator root"
+alias ssh-sailfish-sdk-mer=" ssh-sailfish 2222 engine mersdk"
+alias ssh-sailfish-sdk-root="ssh-sailfish 2222 engine root"
+
 alias /autism="pacaur -Suy"
 alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"
 alias urldecode='python -c "import sys; from urllib.parse import unquote_plus as up; sys.stdout.write(up(sys.stdin.read()))"'
@@ -16,6 +24,7 @@ function :path() { local ptr="${1:-PATH}"; local str="${(P)ptr}"; echo "$str" | 
 alias :p=":path"
 function ihaskell-notebook() { workon ihaskell && stack exec -- jupyter-notebook --notebook-dir=$HOME/projects/haskell }
 alias ghc-find="stack exec -- ghc-pkg find-module --simple-output"
+type hexyl &> /dev/null && alias xxd=hexyl
 
 function any-repl () {
     if [ $# -lt 2 ]; then
