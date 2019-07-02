@@ -2,6 +2,10 @@ alias zshconfig="$VISUAL $HOME/.zshrc"
 alias zshaliases="$VISUAL $HOME/.zsh_aliases"
 alias k="k -h"
 
+# https://twitter.com/ns_schoe/status/1145741477424881666
+alias cp='cp -i'
+alias rm='rm -i'
+
 alias sshtk="ssh root@ratijas.tk"
 
 # function ssh-sailfish() { ssh -p "$1" -i /opt/SailfishOS/SDK/vmshare/ssh/private_keys/"$2"/"$3" "$3"@localhost }
