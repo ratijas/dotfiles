@@ -68,12 +68,6 @@ if type xdg-open &>/dev/null; then
     }
 fi
 
-function fix-intellij() {
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-    # prepend
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status $POWERLEVEL9K_LEFT_PROMPT_ELEMENTS)
-}
-
 function installed-size() {
     # Show total installed size of all packages on Arch Linux system in human-readable format.
     #
