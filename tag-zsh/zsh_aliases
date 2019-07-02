@@ -4,11 +4,11 @@ alias k="k -h"
 
 alias sshtk="ssh root@ratijas.tk"
 
-function ssh-sailfish() { ssh -p "$1" -i /opt/SailfishOS/SDK/vmshare/ssh/private_keys/"$2"/"$3" "$3"@localhost }
-alias ssh-sailfish-emu-nemo="ssh-sailfish 2223 SailfishOS_Emulator nemo"
-alias ssh-sailfish-emu-root="ssh-sailfish 2223 SailfishOS_Emulator root"
-alias ssh-sailfish-sdk-mer=" ssh-sailfish 2222 engine mersdk"
-alias ssh-sailfish-sdk-root="ssh-sailfish 2222 engine root"
+# function ssh-sailfish() { ssh -p "$1" -i /opt/SailfishOS/SDK/vmshare/ssh/private_keys/"$2"/"$3" "$3"@localhost }
+# alias ssh-sailfish-emu-nemo="ssh-sailfish 2223 SailfishOS_Emulator nemo"
+# alias ssh-sailfish-emu-root="ssh-sailfish 2223 SailfishOS_Emulator root"
+# alias ssh-sailfish-sdk-mer=" ssh-sailfish 2222 engine mersdk"
+# alias ssh-sailfish-sdk-root="ssh-sailfish 2222 engine root"
 
 alias /autism="pacaur -Suy"
 alias whatismyip="wget -4qO- http://whatismyip.akamai.com/"

@@ -201,10 +201,10 @@ function unshare() {
 function ssh-init() {
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
-    ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/SailfishOS_Emulator/nemo
-    ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/SailfishOS_Emulator/root
-    ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/engine/mersdk
-    ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/engine/root
+    # ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/SailfishOS_Emulator/nemo
+    # ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/SailfishOS_Emulator/root
+    # ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/engine/mersdk
+    # ssh-add /opt/SailfishOS/SDK/vmshare/ssh/private_keys/engine/root
 }
 function ssh-uninit() {
     unshare SSH_AUTH_SOCK SSH_AGENT_PID
