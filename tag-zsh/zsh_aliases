@@ -29,6 +29,19 @@ alias :p=":path"
 function ihaskell-notebook() { workon ihaskell && stack exec -- jupyter-notebook --notebook-dir=$HOME/projects/haskell }
 alias ghc-find="stack exec -- ghc-pkg find-module --simple-output"
 type hexyl &> /dev/null && alias xxd=hexyl
+function http-share-dir() {
+    local directory=${1:-$PWD}
+    local port=${2:-8080}
+    python -m http.server \
+        "${port}"
+        --bind 0.0.0.0 \
+        --directory "${directory}" \
+        &                                           # background job
+    sleep 1                                         # give server some time to launch
+    open "http://${HOST}.local:${port}/"            # / at the end is important
+    fg                                              # bring server to foreground
+}
+alias http-share-dir='python -m http.server --bind 0.0.0.0 8080 & ; sleep 1; xdg-open http://`hostname`.local:8080/ ; fg ;'
 
 function any-repl () {
     if [ $# -lt 2 ]; then
