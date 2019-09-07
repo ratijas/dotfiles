@@ -254,6 +254,11 @@ mkdir -p "$WORKON_HOME"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/consul consul
 
+## npm
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
 ## functions & aliases
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
