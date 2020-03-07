@@ -17,7 +17,7 @@ setopt HIST_FIND_NO_DUPS
 setopt histignorespace
 
 # zsh help files as man pages.
-if [ -d /usr/share/zsh/?.*/help ] ; then
+if zsh -c '[ -d /usr/share/zsh/?.*/help ]' ; then
     unalias run-help
     autoload run-help
     export HELPDIR=$(echo /usr/share/zsh/?.*/help)
