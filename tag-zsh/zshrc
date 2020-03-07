@@ -146,7 +146,17 @@ if [ "$DEFAULT_USER" = 'root' ]; then
     DEFAULT_USER=
 fi
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time battery)
+
+### Battery
+#### Vertical bar with trailling space
+POWERLEVEL9K_BATTERY_STAGES=($'\u2581 ' $'\u2582 ' $'\u2583 ' $'\u2584 ' $'\u2585 ' $'\u2586 ' $'\u2587 ' $'\u2588 ')
+#### Subdued Colors
+POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(darkred orange4 yellow4 yellow4 chartreuse3 green3 green4 darkgreen)
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20
+#### Hide time remaining
+POWERLEVEL9K_BATTERY_VERBOSE=false
+
 POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
