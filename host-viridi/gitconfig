@@ -1,6 +1,7 @@
 [user]
 	name = ivan tkachenko
 	email = me@ratijas.tk
+	signingkey = AE69C4B00B02FC69
 [core]
 	quotepath = false
 	autocrlf = input
@@ -11,3 +12,5 @@
 	ui = auto
 [diff]
 	submodule = log
+[commit]
+	gpgsign = true
