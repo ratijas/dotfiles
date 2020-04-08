@@ -1,5 +1,7 @@
-# The following lines were added by compinstall
+export LC_ALL=en_US.UTF-8
+export LC_TIME=mn_CN.UTF-8  # chinese datetime format makes sense for me: 2020-04-08 23:42:00
 
+# The following lines were added by compinstall
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ''
