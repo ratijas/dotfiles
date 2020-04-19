@@ -42,7 +42,11 @@ function http-share-dir() {
     fg                                              # bring server to foreground
 }
 alias http-share-dir='python -m http.server --bind 0.0.0.0 8080 & ; sleep 1; xdg-open http://`hostname`.local:8080/ ; fg ;'
-alias xclip="xclip -sel clip"
+
+# Clipboard utils
+alias xclip="xclip -selection clipboard"
+alias xcopy="xclip -in"
+alias xpaste="xclip -out"
 
 function any-repl () {
     if [ $# -lt 2 ]; then
