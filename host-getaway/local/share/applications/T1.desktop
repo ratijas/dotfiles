@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Categories=Network;InstantMessaging;Qt;
 Comment=Official desktop version of Telegram messaging app

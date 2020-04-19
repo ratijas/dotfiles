@@ -1,0 +1,25 @@
+[DownloadDialog Settings]
+Height 1080=729
+Width 1920=952
+
+[KFileDialog Settings]
+detailViewIconSize=0
+
+[ScreenConnectors]
+10=DP-2
+
+[UniversalSettings]
+badges3DStyle=true
+canDisableBorders=false
+currentLayout=Custom
+downloadWindowSize=800,550
+lastNonAssignedLayout=Custom
+launchers=applications:org.kde.dolphin.desktop,applications:firefox.desktop,file:///home/pitoo/.local/share/applications/T1.desktop,file:///home/pitoo/.local/share/applications/T2.desktop,applications:sublime_text.desktop
+layoutsColumnWidths=141,100,83,0
+layoutsWindowSize=700,637
+memoryUsage=0
+metaPressAndHoldEnabled=true
+mouseSensitivity=2
+screenTrackerInterval=2500
+showInfoWindow=true
+version=2
