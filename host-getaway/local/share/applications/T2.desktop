@@ -1,0 +1,25 @@
+[Desktop Entry]
+Categories=Network;InstantMessaging;Qt;
+Comment=Official desktop version of Telegram messaging app
+Comment[ru_RU]=Official desktop version of Telegram messaging app
+Exec=/bin/telegram-desktop -many -workdir /home/pitoo/.local/share/TelegramDesktop2ndInstance/
+GenericName=
+GenericName[ru_RU]=
+Icon=telegram
+MimeType=
+Name=Telegram T2
+Name[ru_RU]=Telegram T2
+NoDisplay=false
+Path=/home/pitoo/.local/share/TelegramDesktop2ndInstance
+StartupNotify=true
+StartupWMClass=TelegramDesktop
+Terminal=false
+TerminalOptions=
+TryExec=/usr/bin/telegram-desktop
+Type=Application
+Version=1.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-Desktop-File-Install-Version=0.23
+X-KDE-SubstituteUID=false
+X-KDE-Username=
