@@ -1,0 +1,13 @@
+[Layout]
+DisplayNames=,,,
+LayoutList=us,ru,ru(mac),ua
+LayoutLoopCount=2
+Model=asus_laptop
+Options=caps:ctrl_modifier,ctrl:swapcaps,compose:menu
+ResetOldOptions=true
+ShowFlag=true
+ShowLabel=false
+ShowLayoutIndicator=true
+ShowSingle=true
+SwitchMode=Global
+Use=true

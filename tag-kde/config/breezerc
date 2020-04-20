@@ -1,0 +1,6 @@
+[Style]
+MenuOpacity=90
+TabBarDrawCenteredTabs=true
+
+[Windeco]
+DrawBorderOnMaximizedWindows=true

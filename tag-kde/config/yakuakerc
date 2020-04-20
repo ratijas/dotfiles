@@ -1,0 +1,65 @@
+[Animation]
+Frames=15
+
+[Appearance]
+Skin=arc-dark
+
+[Desktop Entry]
+DefaultProfile=Solarized Dark (zsh).profile
+
+[Dialogs]
+FirstRun=false
+
+[DownloadDialog Settings]
+Height 1080=655
+Width 1920=774
+
+[Favorite Profiles]
+Favorites=
+
+[FileDialogSize]
+Height 1080=728
+Width 1920=1023
+
+[KFileDialog Settings]
+Recent Files[$e]=sailfish-sdk-bin.log,file:$HOME/tmp/sailfish-sdk-bin.log
+Recent URLs[$e]=file:$HOME/tmp/
+
+[Shortcuts]
+close-active-terminal=Ctrl+Shift+R
+close-session=Ctrl+Shift+W
+decrease-window-height=Alt+Shift+Up
+decrease-window-width=Alt+Shift+Left
+file_quit=Ctrl+Shift+Q
+increase-window-height=Alt+Shift+Down
+increase-window-width=Alt+Shift+Right
+manage-profiles=Alt+,
+move-session-left=Ctrl+Shift+Left
+move-session-right=Ctrl+Shift+Right
+new-session=Ctrl+Shift+T
+next-session=Alt+}; Ctrl+PgDown
+next-terminal=Alt+]; Alt+Right
+previous-session=Alt+{; Ctrl+PgUp
+previous-terminal=Alt+[; Alt+Left
+rename-session=Ctrl+Alt+S
+split-left-right=Ctrl+(
+split-top-bottom=Ctrl+)
+switch-to-session-1=Alt+1
+switch-to-session-10=Alt+0
+switch-to-session-2=Alt+2
+switch-to-session-3=Alt+3
+switch-to-session-4=Alt+4
+switch-to-session-5=Alt+5
+switch-to-session-6=Alt+6
+switch-to-session-7=Alt+7
+switch-to-session-8=Alt+8
+switch-to-session-9=Alt+9
+toggle-session-monitor-activity=Ctrl+Shift+A
+toggle-session-monitor-silence=Ctrl+Shift+I
+view-full-screen=Ctrl+Shift+F11; Alt+Return
+
+[Window]
+DynamicTabTitles=true
+Height=80
+KeepOpenAfterLastSessionCloses=true
+ToggleToFocus=true

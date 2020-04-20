@@ -1,0 +1,12 @@
+[Event/compositingsuspendeddbus]
+Execute=
+Logfile=
+Sound=
+TTS=
+
+[Event/graphicsreset]
+Action=
+Execute=
+Logfile=
+Sound=
+TTS=
