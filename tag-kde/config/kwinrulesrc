@@ -44,7 +44,6 @@ clientmachine=getaway
 clientmachinematch=0
 closeable=false
 closeablerule=2
-titlematch=0
 types=1
 windowrole=browser
 windowrolematch=1
