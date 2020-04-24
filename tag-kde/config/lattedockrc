@@ -10,6 +10,7 @@ outlineWidth=1
 
 [ScreenConnectors]
 10=DP-2
+11=HDMI-0
 
 [UniversalSettings]
 badges3DStyle=true
@@ -17,7 +18,7 @@ canDisableBorders=false
 currentLayout=Custom
 downloadWindowSize=800,550
 lastNonAssignedLayout=Custom
-launchers=applications:org.kde.dolphin.desktop,applications:firefox.desktop,file:///home/pitoo/.local/share/applications/T1.desktop,file:///home/pitoo/.local/share/applications/T2.desktop,applications:sublime_text.desktop
+launchers=applications:org.kde.dolphin.desktop,applications:firefox.desktop,file:///home/pitoo/.local/share/applications/T1.desktop,file:///home/pitoo/.local/share/applications/T2.desktop,applications:sublime_text.desktop,applications:org.qt-project.qtcreator.desktop
 layoutsColumnWidths=141,100,83,0
 layoutsWindowSize=700,637
 memoryUsage=0
