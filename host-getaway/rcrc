@@ -1,3 +1,17 @@
 HOSTNAME="getaway"
-SYMLINK_DIRS="config/latte pacman zgen"
-TAGS="arch haskell kde python zsh"
+EXCLUDES="
+    README.md
+"
+SYMLINK_DIRS="
+    config/latte
+    config/QtProject/qtcreator/*
+    pacman
+    zgen
+"
+TAGS="
+    arch
+    haskell
+    kde
+    python
+    zsh
+"
