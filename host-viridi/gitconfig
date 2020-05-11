@@ -14,5 +14,6 @@
 	submodule = log
 [commit]
 	gpgsign = true
+	template = ~/.commit-template
 [tag]
 	gpgSign = true
