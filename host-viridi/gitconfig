@@ -17,3 +17,8 @@
 	template = ~/.commit-template
 [tag]
 	gpgSign = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[rebase]
+	stat = true
