@@ -2,9 +2,7 @@
 update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed
 
 [Compositing]
-Backend=OpenGL
 Enabled=true
-GLCore=false
 GLPreferBufferSwap=a
 GLTextureFilter=2
 HiddenPreviews=5
@@ -98,8 +96,9 @@ CommandWindowWheel=Scroll
 
 [NightColor]
 Active=true
-LatitudeAuto=55.7592
-LongitudeAuto=48.6917
+LatitudeAuto=55.7498
+LongitudeAuto=48.7475
+NightTemperature=4000
 
 [Plugins]
 blurEnabled=false
@@ -107,6 +106,7 @@ contrastEnabled=false
 coverswitchEnabled=true
 cubeslideEnabled=false
 desktopchangeosdEnabled=true
+flipswitchEnabled=true
 highlightwindowEnabled=true
 kwin4_effect_dimscreenEnabled=true
 kwin4_effect_fadeEnabled=false
@@ -200,3 +200,4 @@ ButtonsOnLeft=XAI
 ButtonsOnRight=L
 CloseOnDoubleClickOnMenu=false
 library=org.kde.breeze
+theme=__aurorae__svg__Arc-Dark
