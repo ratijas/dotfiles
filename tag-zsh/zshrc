@@ -30,6 +30,9 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cabal/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/projects/qt/qt5/qtrepotools/bin
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 
 # cuda
 if [ -d /opt/cuda ] ; then
@@ -40,7 +43,10 @@ fi
 # android sdk & PATH
 export ANDROID_SDK_ROOT=/opt/android-sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
+export ANDROID_NDK=$ANDROID_SDK_ROOT/ndk-bundle
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export Qt5_android=/var/run/media/pitoo/ExtHD/Android/Qt5_android
 
 # sailfish sdk & PATH
 export PATH=$PATH:/opt/SailfishOS/SDK/bin
