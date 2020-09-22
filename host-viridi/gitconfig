@@ -22,3 +22,5 @@
 	autoupdate = true
 [rebase]
 	stat = true
+[pull]
+	ff = only
