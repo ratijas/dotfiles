@@ -13,8 +13,8 @@ XRenderSmoothScale=false
 [Desktops]
 Id_1=6770fea6-f781-4543-8cf0-3165bbfca4e4
 Id_2=52a1f231-a121-4659-8603-3364cdac9f25
-Id_3=d4b761ce-9fc6-4655-a881-ebc81c471838
-Id_4=d6cf7bdc-bc1b-4db1-b1b7-cfaa4382d482
+Id_3=d6cf7bdc-bc1b-4db1-b1b7-cfaa4382d482
+Id_4=05ab10f7-1a27-422b-b278-2ec29fd45e14
 Number=4
 Rows=2
 
@@ -55,6 +55,7 @@ TouchBorderActivateAll=9
 TouchBorderActivateClass=9
 
 [Effect-Slide]
+SlideBackground=false
 SlideDocks=false
 
 [Effect-Wobbly]
@@ -98,7 +99,7 @@ CommandWindowWheel=Scroll
 Active=true
 LatitudeAuto=55.7498
 LongitudeAuto=48.7475
-NightTemperature=4000
+NightTemperature=3000
 
 [Plugins]
 blurEnabled=false

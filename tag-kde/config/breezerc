@@ -1,5 +1,6 @@
 [Style]
 MenuOpacity=90
+MnemonicsMode=MN_NEVER
 TabBarDrawCenteredTabs=true
 
 [Windeco]

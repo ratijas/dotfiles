@@ -1,6 +1,6 @@
 [Layout]
-DisplayNames=,,,
-LayoutList=us,ru,ru(mac),ua
+DisplayNames=,,
+LayoutList=us,ru,ua
 LayoutLoopCount=2
 Model=asus_laptop
 Options=caps:ctrl_modifier,ctrl:swapcaps,compose:menu

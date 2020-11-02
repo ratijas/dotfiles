@@ -2,14 +2,14 @@
 Action=Sound|Popup
 Execute=
 Logfile=
-Sound=/usr/share/sounds/freedesktop/stereo/bell.oga
+Sound=/usr/share/sounds/freedesktop/stereo/window-attention.oga
 TTS=
 
 [Event/BellVisible]
 Action=Sound
 Execute=
 Logfile=
-Sound=/usr/share/sounds/freedesktop/stereo/bell.oga
+Sound=/usr/share/sounds/freedesktop/stereo/window-attention.oga
 TTS=
 
 [Event/activity]
