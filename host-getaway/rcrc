@@ -1,11 +1,9 @@
 HOSTNAME="getaway"
 EXCLUDES="
-    README.md
 "
 SYMLINK_DIRS="
     config/latte
     config/QtProject/qtcreator/*
-    zgen
 "
 TAGS="
     git

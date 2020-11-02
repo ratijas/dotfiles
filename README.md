@@ -2,7 +2,20 @@
 
 Collection of dotfiles and setup advices that suite my particular usecase. YMMV.
 
-### ASUS ROG
+## Install
+
+Installation requires [thoughtbot/rcm](https://github.com/thoughtbot/rcm) package.
+
+ - After clonning into `.dotfiles` like this: `git clone --recurse-submodules https://github.com/ratijas/dotfiles $HOME/.dotfiles`,
+ - run twice `rcup -v`:
+    * first time it installs `.rcrc` config according to hostname,
+    * second time it acts according to parameters in `.rcrc`.
+
+## Dependencies
+
+ - [lf](https://github.com/gokcehan/lf): Terminal file manager.
+
+## ASUS ROG
 
 To fix sound issue add the following line to `/etc/modprobe.d/99-sound.conf`:
 

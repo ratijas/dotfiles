@@ -5,7 +5,7 @@
 [core]
 	quotepath = false
 	autocrlf = input
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.config/git/ignore
 [credential]
 	helper = cache --timeout=3600
 [color]
@@ -14,7 +14,7 @@
 	submodule = log
 [commit]
 	gpgsign = true
-	template = ~/.git-commit-template.txt
+	template = ~/.config/git/commit-template.txt
 [tag]
 	gpgSign = true
 [rerere]

@@ -1,0 +1,10 @@
+emulate -L zsh
+
+typeset -g cool_stuff=(one 2 tree)
+
+cool-function() {
+  echo "let's a go"
+  printf 'print some stuff: %s\n' $cool_stuff
+}
+
+echo 'nice to see ya!'
