@@ -40,11 +40,6 @@ export ANDROID_NDK=$ANDROID_SDK_ROOT/ndk-bundle
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 
-# running on MSYS2
-if (( ! $+commands[sudo] )); then
-    alias sudo=/usr/bin/env
-fi
-
 # zgen
 ## set up
 ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
