@@ -199,25 +199,6 @@ function unshare() {
     done
 }
 
-## ssh keys
-function ssh-init() {
-    eval "$(ssh-agent -s)"
-
-    ssh-add-if-exists ~/.ssh/id_rsa
-
-}
-function ssh-add-if-exists() {
-    [ -f "$1" ] && ssh-add "$1"
-}
-function ssh-uninit() {
-    unshare SSH_AUTH_SOCK SSH_AGENT_PID
-}
-
-share-env-get SSH_AUTH_SOCK SSH_AGENT_PID 2> /dev/null || {
-    ssh-init
-    share-env-set SSH_AUTH_SOCK SSH_AGENT_PID
-}
-
 
 ## env
 export VISUAL=vim
