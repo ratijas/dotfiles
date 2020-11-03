@@ -14,7 +14,7 @@
 	submodule = log
 [commit]
 	gpgsign = true
-	template = ~/.commit-template
+	template = ~/.git-commit-template.txt
 [tag]
 	gpgSign = true
 [rerere]

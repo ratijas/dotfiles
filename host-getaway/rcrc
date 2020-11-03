@@ -5,12 +5,10 @@ EXCLUDES="
 SYMLINK_DIRS="
     config/latte
     config/QtProject/qtcreator/*
-    pacman
     zgen
 "
 TAGS="
-    arch
-    haskell
+    git
     kde
     python
     zsh
