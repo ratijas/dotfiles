@@ -205,10 +205,6 @@ function ssh-init() {
 
     ssh-add-if-exists ~/.ssh/id_rsa
 
-    ssh-add-if-exists /opt/SailfishOS/SDK/vmshare/ssh/private_keys/SailfishOS_Emulator/nemo
-    ssh-add-if-exists /opt/SailfishOS/SDK/vmshare/ssh/private_keys/SailfishOS_Emulator/root
-    ssh-add-if-exists /opt/SailfishOS/SDK/vmshare/ssh/private_keys/engine/mersdk
-    ssh-add-if-exists /opt/SailfishOS/SDK/vmshare/ssh/private_keys/engine/root
 }
 function ssh-add-if-exists() {
     [ -f "$1" ] && ssh-add "$1"
