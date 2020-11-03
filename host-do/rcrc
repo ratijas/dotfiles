@@ -1,3 +1,7 @@
 SYMLINK_DIRS="zgen"
 HOSTNAME="do"
-TAGS="zsh python"
+TAGS="
+    git
+    python
+    zsh
+"
