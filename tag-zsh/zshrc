@@ -218,24 +218,6 @@ share-env-get SSH_AUTH_SOCK SSH_AGENT_PID 2> /dev/null || {
     share-env-set SSH_AUTH_SOCK SSH_AGENT_PID
 }
 
-## open new tabs in the same directory
-local CWD_FILE=yakuake-cwd
-
-function restore-cwd(){
-    ### can not trust $SHLVL
-    local zsh_lvl=$(pstree -ls $$ | grep -o zsh | wc -l)
-    pstree -ls $$ | grep -q "yakuake"
-    local in_terminal=$?
-    if (( zsh_lvl == 1 & in_terminal == 0 )); then
-        local cwd && cwd=$(share-get "$CWD_FILE" 2> /dev/null) && cd "$cwd"
-    fi
-}
-function store-cwd() {
-    share-set "$CWD_FILE" "$(pwd)"
-}
-autoload -Uz add-zsh-hook
-add-zsh-hook -Uz chpwd store-cwd
-restore-cwd
 
 ## env
 export VISUAL=vim
