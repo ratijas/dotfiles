@@ -14,6 +14,7 @@ Installation requires [thoughtbot/rcm](https://github.com/thoughtbot/rcm) packag
 ## Dependencies
 
  - [lf](https://github.com/gokcehan/lf): Terminal file manager.
+ - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): Fish shell-like syntax highlighting for Zsh. Available on Arch/community and apt.
 
 ## ASUS ROG
 
