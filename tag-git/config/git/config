@@ -24,3 +24,8 @@
 	stat = true
 [pull]
 	ff = only
+[sendemail]
+	smtpuser = me@ratijas.tk
+	smtpserver = smtp.yandex.ru
+	smtpencryption = ssl
+	smtpserverport = 465
