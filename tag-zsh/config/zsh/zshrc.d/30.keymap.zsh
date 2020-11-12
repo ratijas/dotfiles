@@ -1,6 +1,5 @@
 # Using emacs mode
-bindkey -N ratijas emacs
-bindkey -A ratijas main
+bindkey -A emacs main
 
 # Map Backspace and Delete as in GUI text editor
 bindkey '^H' backward-kill-word  # Ctrl+Backspace
