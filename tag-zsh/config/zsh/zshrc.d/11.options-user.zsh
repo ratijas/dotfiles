@@ -13,7 +13,7 @@ setopt PUSHD_TO_HOME
 setopt ALWAYS_TO_END
 setopt COMPLETE_IN_WORD
 setopt WARN_CREATE_GLOBAL
-setopt WARN_NESTED_VAR
+# setopt WARN_NESTED_VAR  # it's too restrictive
 
 # 16.2.4 History
 
@@ -47,6 +47,7 @@ setopt PROMPT_SUBST
 
 setopt C_BASES
 setopt OCTAL_ZEROES
+setopt LOCAL_OPTIONS
 unsetopt MULTI_FUNC_DEF
 
 # 16.2.10 Shell Emulation
