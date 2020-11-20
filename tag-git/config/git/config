@@ -24,6 +24,8 @@
 	stat = true
 [pull]
 	ff = only
+[push]
+	gpgSign = if-asked
 [sendemail]
 	smtpuser = me@ratijas.tk
 	smtpserver = smtp.yandex.ru
