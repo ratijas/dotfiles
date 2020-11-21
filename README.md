@@ -25,3 +25,8 @@ options snd-hda-intel model=dell-headset-multi
 ```
 
 [Source](https://www.reddit.com/r/linuxhardware/comments/5nei16/linux_on_asus_rog_laptops/)
+
+Install correct driver for ethernet module and blacklist built-in one:
+
+- `aura -A `[r8168-dkms](https://aur.archlinux.org/packages/r8168-dkms/)
+- `echo "blacklist r8169" > /etc/modprobe.d/r8169_blacklist.conf`
