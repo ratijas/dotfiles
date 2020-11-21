@@ -1,7 +1,7 @@
 [Formats]
-LANG=ru_RU.UTF-8
+LANG=en_US.UTF-8
 LC_TIME=mn_CN.UTF-8
 useDetailed=true
 
 [Translations]
-LANGUAGE=en_US:ru
+LANGUAGE=en_US
