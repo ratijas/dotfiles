@@ -7,3 +7,8 @@ fi
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
+
+# Borrowed from oh-my-zsh/lib/functions.zsh
+function take() {
+  mkdir -p $@ && cd ${@:$#}
+}
