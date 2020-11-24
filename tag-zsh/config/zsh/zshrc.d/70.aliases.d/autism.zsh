@@ -1,4 +1,4 @@
 # Upgrade Arch Linux
-if (( $+commands[pacaur] )); then
-  alias /autism="pacaur -Suy"
+if (( $+commands[aura] )); then
+  alias /autism="sudo aura -Syu && sudo aura -Au"
 fi
