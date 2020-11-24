@@ -29,7 +29,8 @@ options snd-hda-intel model=dell-headset-multi
 
 [Source](https://www.reddit.com/r/linuxhardware/comments/5nei16/linux_on_asus_rog_laptops/)
 
-Install correct driver for ethernet module and blacklist built-in one:
+### Network
 
-- `aura -A `[r8168-dkms](https://aur.archlinux.org/packages/r8168-dkms/)
-- `echo "blacklist r8169" > /etc/modprobe.d/r8169_blacklist.conf`
+[Realtek RTL8111/8168B](https://wiki.archlinux.org/index.php/Network_configuration/Ethernet#Realtek_RTL8111/8168B)
+
+> The adapter should be recognized by the `r8169` module. However, with some chip revisions the connection may go off and on all the time. The alternative [r8168](https://www.archlinux.org/packages/?name=r8168) should be used for a reliable connection in this case. [Blacklist](https://wiki.archlinux.org/index.php/Blacklist) `r8169`, if [r8168](https://www.archlinux.org/packages/?name=r8168) is not automatically loaded by [udev](https://wiki.archlinux.org/index.php/Udev), see [Kernel modules#Automatic module loading with systemd](https://wiki.archlinux.org/index.php/Kernel_modules#Automatic_module_loading_with_systemd).
