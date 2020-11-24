@@ -19,9 +19,9 @@ autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # Editors
-type vim &> /dev/null && {
+if   (( $+commands[vim] )); then
   export VISUAL=vim
-}|| {
+elif (( $+commands[nano] )); then
   export VISUAL=nano
-}
+fi
 export EDITOR="$VISUAL"

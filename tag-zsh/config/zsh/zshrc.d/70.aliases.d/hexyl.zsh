@@ -1,2 +1,4 @@
 # Nice colorful xxd replacement
-type hexyl &> /dev/null && alias xxd="hexyl"
+if (( $+commands[hexyl] )); then
+  alias xxd="hexyl"
+fi

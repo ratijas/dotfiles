@@ -1,5 +1,5 @@
 # Clipboard utils
-if type xclip &> /dev/null; then
+if (( $+commands[xclip] )); then
   alias xclip="xclip -selection clipboard"
   alias xcopy="xclip -in"
   alias xpaste="xclip -out"

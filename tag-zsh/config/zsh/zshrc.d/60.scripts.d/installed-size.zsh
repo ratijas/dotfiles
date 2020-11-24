@@ -1,4 +1,4 @@
-if type expac &> /dev/null; then
+if (( $+commands[expac] )); then
   function installed-size() {
     if [[ "$1" =~ '--help|-h' ]]; then
       echo "$0 - report total size of all packages installed on the"

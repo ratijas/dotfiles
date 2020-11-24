@@ -1,3 +1,4 @@
 # Upgrade Arch Linux
-type pacaur &> /dev/null &&
+if (( $+commands[pacaur] )); then
   alias /autism="pacaur -Suy"
+fi

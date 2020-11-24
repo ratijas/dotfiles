@@ -1,4 +1,4 @@
-if type xdg-open &> /dev/null; then
+if (( $+commands[xdg-open] )); then
   function open() {
     if [[ "$1" =~ '--help|-h' ]]; then
       echo "$0 - Smart alias for xdg-open."
