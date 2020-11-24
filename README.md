@@ -15,9 +15,12 @@ Installation requires [thoughtbot/rcm](https://github.com/thoughtbot/rcm) packag
 
 All dependencies are optional so far.
 
+ - [bat](https://github.com/sharkdp/bat):  A cat(1) clone with wings.
+ - [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
  - [lf](https://github.com/gokcehan/lf): Terminal file manager.
- - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): Fish shell-like syntax highlighting for Zsh. Available on Arch/community and apt.
- - [powerlevel10k](https://github.com/romkatv/powerlevel10k): A Zsh theme
+ - [powerlevel10k](https://github.com/romkatv/powerlevel10k): A Zsh theme.
+ - [zsh-completions](https://github.com/zsh-users/zsh-completions): Additional completion definitions for Zsh.
+ - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): Fish shell-like syntax highlighting for Zsh.
 
 ## ASUS ROG
 
