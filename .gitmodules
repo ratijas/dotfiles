@@ -1,6 +1,0 @@
-[submodule "tag-zsh/zgen"]
-	path = tag-zsh/zgen
-	url = https://github.com/tarjoilija/zgen.git
-[submodule "tag-kde/fontconfig-emoji"]
-	path = tag-kde/config/fontconfig/conf.d
-	url = https://github.com/stove-panini/fontconfig-emoji.git
