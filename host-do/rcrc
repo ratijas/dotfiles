@@ -1,4 +1,4 @@
-SYMLINK_DIRS="zgen"
+SYMLINK_DIRS=""
 HOSTNAME="do"
 TAGS="
     git
