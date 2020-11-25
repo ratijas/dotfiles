@@ -17,7 +17,7 @@ bindkey '^[[5~' up-history         # PgUp
 bindkey '^[[6~' down-history       # PgDn
 
 # Zsh help files and man pages
-unalias run-help
+(( $+aliases[run-help] )) && unalias run-help
 autoload run-help
 bindkey '\eh' run-help  # Alt+h
 
