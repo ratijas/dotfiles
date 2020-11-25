@@ -16,6 +16,7 @@ Installation requires [thoughtbot/rcm](https://github.com/thoughtbot/rcm) packag
 All dependencies are optional so far.
 
  - [bat](https://github.com/sharkdp/bat):  A cat(1) clone with wings.
+ - [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
  - [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
  - [lf](https://github.com/gokcehan/lf): Terminal file manager.
  - [powerlevel10k](https://github.com/romkatv/powerlevel10k): A Zsh theme.
