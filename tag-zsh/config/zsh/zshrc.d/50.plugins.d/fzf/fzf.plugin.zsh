@@ -13,6 +13,10 @@ if (( $+commands[fzf] )); then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   fi
 
+  if (( $+commands[tree] )); then
+    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+  fi
+
   if [[ -d /usr/share/fzf ]]; then
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
