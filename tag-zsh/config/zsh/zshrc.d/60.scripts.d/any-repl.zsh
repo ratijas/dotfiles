@@ -1,8 +1,10 @@
 function any-repl () {
   if [[ $# < 2 ]]; then
     echo "$0 - wrap any command in REPL-style interface"
-    echo ""
-    echo "Usage: $0 prompt cmd [arg ...]"
+    echo
+    echo "Usage:"
+    echo "    $bold_color$0$reset_color ${underline_color}prompt${reset_color} ${underline_color}cmd${reset_color} [${underline_color}arg${reset_color} ...]"
+    echo
     echo "    prompt        - Analogue to \$PS1"
     echo "    cmd [arg ...] - Command to run and args to pass. User's input will be passed as the last argument."
     return 1

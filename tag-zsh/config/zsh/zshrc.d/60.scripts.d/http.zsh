@@ -1,12 +1,13 @@
 function http-share-dir() {
     if [[ "$1" =~ '--help|-h' ]]; then
-        echo "$0 - Share a directory over local letwork via HTTP server."
-        echo "  Listens on interface 0.0.0.0!"
+        echo "$0 - share a directory over local letwork via HTTP server."
+        echo "  Listens on all interfaces (0.0.0.0)!"
         echo
-        echo 'Usage: http-share-dir [ <directory> [ <port> ] ]'
+        echo "Usage: "
+        echo "    $bold_color$0$reset_color [ ${underline_color}<directory>${reset_color} [ ${underline_color}<port>${reset_color} ] ]"
         echo
-        echo '    <directory> - which directory to share, default: current directory'
-        echo '    <port>      - on which port server starts, default: 8080'
+        echo "    ${underline_color}<directory>${reset_color} - which directory to share, default: current directory"
+        echo "    ${underline_color}<port>${reset_color}      - on which port server starts, default: 8080"
         return 1
     fi
     local directory="${1:-$PWD}"
