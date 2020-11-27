@@ -1,0 +1,38 @@
+# TODO: send patch to zsh upstream.
+# Target file is /usr/share/zsh/functions/Misc/colors.
+
+local lc=$'\e[' rc=m  # Standard ANSI terminal escape values
+
+# typeset -Hg reset_color bold_color
+typeset -Hg underline_color
+# reset_color="$lc${color[none]}$rc"
+# bold_color="$lc${color[bold]}$rc"
+underline_color="$lc${color[underline]}$rc"
+
+# Foreground
+
+# typeset -AHg fg fg_bold fg_no_bold
+typeset -AHg fg_underline fg_no_underline
+
+for k in ${(k)color[(I)fg-*]}; do
+    # fg[${k#fg-}]="$lc${color[$k]}$rc"
+    # fg_bold[${k#fg-}]="$lc${color[bold]};${color[$k]}$rc"
+    # fg_no_bold[${k#fg-}]="$lc${color[normal]};${color[$k]}$rc"
+    fg_underline[${k#fg-}]="$lc${color[underline]};${color[$k]}$rc"
+    fg_no_underline[${k#fg-}]="$lc${color[normal]};${color[$k]}$rc"
+done
+
+# Background
+
+# typeset -AHg bg bg_bold bg_no_bold
+typeset -AHg bg_underline bg_no_underline
+for k in ${(k)color[(I)bg-*]}; do
+    # bg[${k#bg-}]="$lc${color[$k]}$rc"
+    # bg_bold[${k#bg-}]="$lc${color[bold]};${color[$k]}$rc"
+    # bg_no_bold[${k#bg-}]="$lc${color[normal]};${color[$k]}$rc"
+    bg_underline[${k#bg-}]="$lc${color[underline]};${color[$k]}$rc"
+    bg_no_underline[${k#bg-}]="$lc${color[normal]};${color[$k]}$rc"
+done
+
+# TODO: convert to autoloading function, remove unset below
+unset lc rc
