@@ -1,4 +1,4 @@
 # Human-readable size
-if (( $+commands[k] )); then
+if type k &>/dev/null; then
   alias k="k -h"
 fi
