@@ -12,8 +12,14 @@ mkdir -p "${WGETRC:h}"
   mv -f "$HOME/.wgetrc" "$WGETRC"
 }
 
+fpath+=(
+  $HOME/.config/zsh/functions
+  $HOME/.config/zsh/functions/Misc
+)
+
 # Load colors definitions
 autoload -U colors && colors
+autoload -U more-colors && more-colors
 
 # Prompt
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "

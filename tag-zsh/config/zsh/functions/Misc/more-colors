@@ -1,6 +1,8 @@
 # TODO: send patch to zsh upstream.
 # Target file is /usr/share/zsh/functions/Misc/colors.
 
+local k
+
 local lc=$'\e[' rc=m  # Standard ANSI terminal escape values
 
 # typeset -Hg reset_color bold_color
@@ -33,6 +35,3 @@ for k in ${(k)color[(I)bg-*]}; do
     bg_underline[${k#bg-}]="$lc${color[underline]};${color[$k]}$rc"
     bg_no_underline[${k#bg-}]="$lc${color[normal]};${color[$k]}$rc"
 done
-
-# TODO: convert to autoloading function, remove unset below
-unset lc rc
