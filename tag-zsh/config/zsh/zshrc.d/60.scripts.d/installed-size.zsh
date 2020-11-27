@@ -1,6 +1,8 @@
 if (( $+commands[expac] )); then
   function installed-size() {
     if [[ "$1" =~ '--help|-h' ]]; then
+      autoload -U more-colors && more-colors
+
       echo "$0 - report total size of all packages installed"
       echo "    on the Arch Linux system in human-readable format."
       echo

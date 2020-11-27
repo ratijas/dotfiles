@@ -1,5 +1,7 @@
 function any-repl () {
   if [[ $# < 2 ]]; then
+    autoload -U more-colors && more-colors
+
     echo "$0 - wrap any command in REPL-style interface"
     echo
     echo "Usage:"

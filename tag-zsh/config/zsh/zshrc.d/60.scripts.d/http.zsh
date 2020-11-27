@@ -1,5 +1,7 @@
 function http-share-dir() {
     if [[ "$1" =~ '--help|-h' ]]; then
+        autoload -U more-colors && more-colors
+
         echo "$0 - share a directory over local letwork via HTTP server."
         echo "  Listens on all interfaces (0.0.0.0)!"
         echo

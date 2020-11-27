@@ -1,6 +1,8 @@
 # TODO: send patch to zsh upstream.
 # Target file is /usr/share/zsh/functions/Misc/colors.
 
+autoload -U colors && colors
+
 local k
 
 local lc=$'\e[' rc=m  # Standard ANSI terminal escape values
