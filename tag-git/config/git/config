@@ -31,3 +31,5 @@
 	smtpserver = smtp.yandex.ru
 	smtpencryption = ssl
 	smtpserverport = 465
+[include]
+	path = ~/.config/git/config-host
