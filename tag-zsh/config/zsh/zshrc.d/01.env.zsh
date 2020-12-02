@@ -10,6 +10,8 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 mkdir -p "${WGETRC:h}"
 [[ -r "$HOME/.wgetrc" ]] && {
   mv -f "$HOME/.wgetrc" "$WGETRC"
+} || {
+  touch "$WGETRC"
 }
 
 fpath+=(
