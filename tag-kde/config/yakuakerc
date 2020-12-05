@@ -27,20 +27,11 @@ Recent URLs[$e]=file:$HOME/tmp/
 detailViewIconSize=0
 
 [Shortcuts]
+file_quit=none
 next-session=Shift+Right;\s
 next-terminal=Ctrl+PgDown;\s
 previous-session=Shift+Left;\s
 previous-terminal=Ctrl+PgUp;\s
-switch-to-session-1=Ctrl+1;\s
-switch-to-session-10=Ctrl+0
-switch-to-session-2=Ctrl+2;\s
-switch-to-session-3=Ctrl+3;\s
-switch-to-session-4=Ctrl+4;\s
-switch-to-session-5=Ctrl+5
-switch-to-session-6=Ctrl+6
-switch-to-session-7=Ctrl+7
-switch-to-session-8=Ctrl+8
-switch-to-session-9=Ctrl+9
 view-full-screen=Ctrl+Shift+F11; Alt+Return
 
 [Window]
