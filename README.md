@@ -23,6 +23,14 @@ All dependencies are optional so far.
  - [zsh-completions](https://github.com/zsh-users/zsh-completions): Additional completion definitions for Zsh.
  - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): Fish shell-like syntax highlighting for Zsh.
 
+Some dependencies are vendored, i.e. copy-pasted from their repositories.
+It is possible to update some of them using `git subtree` commands.
+
+ - [ZSH-z](https://github.com/agkozak/zsh-z): Jump quickly to directories that you have visited "frecently."
+   ```sh
+   git subtree add --prefix=tag-zsh/config/zsh/zshrc.d/50.plugins.d/zsh-z --squash git@github.com:agkozak/zsh-z.git master
+   ```
+
 ### Host "getaway"
 
  - [git-credential-keepassxc](https://github.com/frederick888/git-credential-keepassxc): Helper that allows Git (and shell scripts) to use KeePassXC as credential store.
