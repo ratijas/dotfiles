@@ -33,3 +33,7 @@ elif (( $+commands[nano] )); then
   export VISUAL=nano
 fi
 export EDITOR="$VISUAL"
+
+# ZSH-z plugin
+ZSHZ_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh-z-data"
+ZSHZ_NO_RESOLVE_SYMLINKS=1
