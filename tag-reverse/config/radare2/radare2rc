@@ -1,0 +1,6 @@
+e scr.utf8 = true
+e scr.utf8.curvy = true
+# ansi colors work best with proper terminal theme
+e scr.color = 1
+
+e asm.syntax = intel
