@@ -8,7 +8,7 @@ bindkey '^[[3;5~'   delete-word  # Ctrl+Delete
 
 # Map Ctrl+Arrows to navigate words
 bindkey '^[[1;5D'  vi-backward-word
-bindkey '^[[1;5C'  vi-forward-word-end
+bindkey '^[[1;5C'  vi-forward-word
 
 # Home, End, PgUp, PgDn
 bindkey '^[[H'  beginning-of-line  # Home
