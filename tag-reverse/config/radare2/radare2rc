@@ -1,6 +1,10 @@
 e scr.utf8 = true
 e scr.utf8.curvy = true
-# ansi colors work best with proper terminal theme
-e scr.color = 1
+e scr.color = 3
+
+eco ayu
+# other nice themes: monokai, onedark, solarized, zenburn
 
 e asm.syntax = intel
+
+e scr.scrollbar=1
