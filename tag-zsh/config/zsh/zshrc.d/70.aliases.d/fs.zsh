@@ -1,6 +1,6 @@
 # Traversing to the mount point
 if [[ -d /var/run/media ]]; then
-  export mnt="/var/run/media/$USER"
+  export mnt="/Volumes"
   function mnt() { cd "$mnt" ;}
 fi
 
