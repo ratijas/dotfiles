@@ -10,6 +10,9 @@ Seen=true
 [Applications][fr.handbrake.ghb]
 Seen=true
 
+[Applications][org.gnome.baobab]
+Seen=true
+
 [Applications][rhythmbox]
 Seen=true
 ShowInHistory=false

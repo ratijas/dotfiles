@@ -5,11 +5,11 @@ if (( $+commands[fzf] )); then
   fi
 
   if (( $+commands[fd] )); then
-    export FZF_DEFAULT_COMMAND='fd --type file --color=always'
+    export FZF_DEFAULT_COMMAND='fd --follow --type=file --color=always'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_DEFAULT_OPTS="--ansi"
   else
-    export FZF_DEFAULT_COMMAND='find -type f'
+    export FZF_DEFAULT_COMMAND='find -follow -type f '
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   fi
 

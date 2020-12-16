@@ -12,7 +12,4 @@ fi
 # Old WebCam support
 export LD_PRELOAD=/usr/lib/libv4l/v4l2convert.so
 
-# https://wiki.archlinux.org/index.php/Xbindkeys
-xbindkeys
-
 exec startkde
