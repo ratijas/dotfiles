@@ -1,10 +1,14 @@
 e scr.utf8 = true
 e scr.utf8.curvy = true
-e scr.color = 3
+e scr.scrollbar = 1
 
+e scr.color = 3
 eco ayu
 # other nice themes: monokai, onedark, solarized, zenburn
 
 e asm.syntax = intel
+e asm.describe = true  # novice-friendly
+e asm.nbytes = 8
+e asm.sub.tail = 1
 
-e scr.scrollbar=1
+e cfg.fortunes.type = tips,fun,nsfw,creepy
