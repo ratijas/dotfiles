@@ -69,6 +69,7 @@ def autocomplete_and_history():
 
     atexit.register(save_history)
     del atexit, os, readline, rlcompleter, save_history, history_path
+
 autocomplete_and_history()
 del autocomplete_and_history
 
@@ -128,14 +129,49 @@ cd = _cd = _cd()
 
 # Enable Pretty Printing for stdout
 ###################################
-def displayhook(value):
-    if value is not None:
-        try:
-            import __builtin__
-            __builtin__._ = value
-        except ImportError:
-            __builtins__._ = value
-        pprint(value)
+def _print_bases(value):
+    print("dec: %d" % value)
+    print("hex: %s" % hex(value))
+    print("oct: %s" % oct(value))
+    print("bin: %s" % bin(value))
+    try:
+        print("chr: %r" % chr(value))
+    except (OverflowError, ValueError):
+        print("chr: (error)")
 
+def displayhook(value):
+    if value is None:
+        return
+
+    try:
+        import __builtin__
+        __builtin__._ = value
+    except ImportError:
+        __builtins__._ = value
+
+    if type(value).__name__ in ('int', 'long') and sys.displayhook.bases:
+        printer = _print_bases
+    else:
+        printer = pprint
+
+    printer(value)
+
+displayhook.bases = True
 sys.displayhook = displayhook
 del displayhook
+
+@_CommandLineCaller
+class _baseon(object):
+    def __repr__(self):
+        sys.displayhook.bases = True
+        return 'Numbers will be printed in alternative bases'
+
+baseon = _baseon = _baseon()
+
+@_CommandLineCaller
+class _baseoff(object):
+    def __repr__(self):
+        sys.displayhook.bases = False
+        return 'Numbers will be printed only in decimal'
+
+baseoff = _baseoff = _baseoff()
