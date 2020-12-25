@@ -6,12 +6,30 @@ git_version="${${(As: :)$(git version 2>/dev/null)}[3]}"
 # Functions
 #
 
-# The name of the current branch
-# Back-compatibility wrapper for when this function was defined here in
-# the plugin, before being pulled in to core lib/git.zsh as git_current_branch()
-# to fix the core -> git plugin dependency.
-function current_branch() {
-  git_current_branch
+# The git prompt's git commands are read-only and should not interfere with
+# other processes. This environment variable is equivalent to running with `git
+# --no-optional-locks`, but falls back gracefully for older versions of git.
+# See git(1) for and git-status(1) for a description of that flag.
+#
+# We wrap in a local function instead of exporting the variable directly in
+# order to avoid interfering with manually-run git commands by the user.
+function __git_prompt_git() {
+  GIT_OPTIONAL_LOCKS=0 command git "$@"
+}
+
+# Outputs the name of the current branch
+# Usage example: git pull origin $(git_current_branch)
+# Using '--quiet' with 'symbolic-ref' will not cause a fatal error (128) if
+# it's not a symbolic ref, but in a Git repo.
+function git_current_branch() {
+  local ref
+  ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
 }
 
 # Pretty log messages
@@ -31,11 +49,15 @@ function work_in_progress() {
 
 # Check if main exists and use instead of master
 function git_main_branch() {
-  if [[ -n "$(git branch --list main)" ]]; then
-    echo main
-  else
-    echo master
-  fi
+  command git rev-parse --git-dir &>/dev/null || return
+  local branch
+  for branch in main trunk; do
+    if command git show-ref -q --verify refs/heads/$branch; then
+      echo $branch
+      return
+    fi
+  done
+  echo master
 }
 
 #
@@ -95,7 +117,6 @@ alias gd='git diff'
 alias gdca='git diff --cached'
 alias gdcw='git diff --cached --word-diff'
 alias gdct='git describe --tags $(git rev-list --tags --max-count=1)'
-alias gds='git diff --staged'
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdw='git diff --word-diff'
 
@@ -124,6 +145,7 @@ function ggf() {
   git push --force origin "${b:=$1}"
 }
 compdef _git ggf=git-checkout
+
 function ggfl() {
   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
   git push --force-with-lease origin "${b:=$1}"
