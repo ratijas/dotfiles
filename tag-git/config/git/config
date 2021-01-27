@@ -33,3 +33,5 @@
 	smtpserverport = 465
 [include]
 	path = ~/.config/git/config-host
+[init]
+	defaultBranch = master
