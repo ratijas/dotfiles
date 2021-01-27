@@ -35,15 +35,23 @@ It is possible to update some of them using `git subtree` commands.
 
  - [git-credential-keepassxc](https://github.com/frederick888/git-credential-keepassxc): Helper that allows Git (and shell scripts) to use KeePassXC as credential store.
 
-## ASUS ROG
+## ASUS ROG G752VT
 
-To fix sound issue add the following line to `/etc/modprobe.d/99-sound.conf`:
+### Audio/Sound
 
-```
-options snd-hda-intel model=dell-headset-multi
-```
+In default configuration, kernel fails to detect proper options for HD Audio driver, `snd-hda-intel`. Symptoms are: constant high-pitched noise in headset, burst of low-pitched noise after powering up, waking up, or just using audio output after long silence.
 
-[Source](https://www.reddit.com/r/linuxhardware/comments/5nei16/linux_on_asus_rog_laptops/)
+Linux kernel used to work around autodetection bugs by giving users an option to specify a "model" manually. It actually loads a set of fix-ups to apply when loading a driver. For implementation details, see `patch_realtek.c`.
+
+For ALC668, use model `alc668-headset`. It fixes the high-pitch noise, at least until first hibernation. Install from from [tag-workarounds](./tag-workarounds) this file:
+
+- /etc/modprobe.d/alsa.conf
+
+Resources:
+
+- [Linux Sound Subsystem Documentation](https://www.kernel.org/doc/html/latest/sound/index.html)
+- [HD-Audio Codec-Specific Models](https://www.kernel.org/doc/html/latest/sound/hd-audio/models.html)
+- [/kernel/linux/sound/pci/hda/patch_realtek.c](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/sound/pci/hda/patch_realtek.c)
 
 ### Network
 
