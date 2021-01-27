@@ -7,7 +7,7 @@ eco ayu
 # other nice themes: monokai, onedark, solarized, zenburn
 
 e asm.syntax = intel
-e asm.describe = true  # novice-friendly
+# e asm.describe = true  # novice-friendly
 e asm.nbytes = 8
 e asm.sub.tail = 1
 

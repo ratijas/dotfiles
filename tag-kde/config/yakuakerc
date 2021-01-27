@@ -36,7 +36,7 @@ view-full-screen=Ctrl+Shift+F11; Alt+Return
 
 [Window]
 DynamicTabTitles=true
-Height=80
+Height=88
 KeepOpenAfterLastSessionCloses=true
 ShowSystrayIcon=false
 ToggleToFocus=true
