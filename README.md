@@ -50,3 +50,14 @@ options snd-hda-intel model=dell-headset-multi
 [Realtek RTL8111/8168B](https://wiki.archlinux.org/index.php/Network_configuration/Ethernet#Realtek_RTL8111/8168B)
 
 > The adapter should be recognized by the `r8169` module. However, with some chip revisions the connection may go off and on all the time. The alternative [r8168](https://www.archlinux.org/packages/?name=r8168) should be used for a reliable connection in this case. [Blacklist](https://wiki.archlinux.org/index.php/Blacklist) `r8169`, if [r8168](https://www.archlinux.org/packages/?name=r8168) is not automatically loaded by [udev](https://wiki.archlinux.org/index.php/Udev), see [Kernel modules#Automatic module loading with systemd](https://wiki.archlinux.org/index.php/Kernel_modules#Automatic_module_loading_with_systemd).
+
+Even r8169 is not perfect: my ethernet port voids out after waking up from suspend. Solved it by reloading the kernel module via systemd sleep hook. Install these files from [tag-workarounds](./tag-workarounds):
+
+- /usr/bin/r8168-reload.sh
+- /usr/lib/systemd/system-sleep
+
+Resources:
+
+- [My blog post](https://t.me/ratijas_life/108)
+- [Arch Linux bug tracker](https://bugs.archlinux.org/task/67314)
+- [GitHub issue](https://github.com/mtorromeo/r8168/issues/30)

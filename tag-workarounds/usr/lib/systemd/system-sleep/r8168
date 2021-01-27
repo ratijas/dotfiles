@@ -1,0 +1,6 @@
+#!/bin/sh
+
+case "$1" in
+    pre) ;;
+    post) /usr/bin/r8168-reload.sh ;;
+esac
