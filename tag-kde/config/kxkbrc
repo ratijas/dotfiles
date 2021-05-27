@@ -1,5 +1,8 @@
+[$Version]
+update_info=kxkb_variants.upd:split-variants
+
 [Layout]
-DisplayNames=,,
+DisplayNames=,
 LayoutList=us,ru,ua
 LayoutLoopCount=2
 Model=asus_laptop
@@ -11,3 +14,4 @@ ShowLayoutIndicator=true
 ShowSingle=true
 SwitchMode=Global
 Use=true
+VariantList=,

@@ -21,6 +21,7 @@ ShowInHistory=false
 Seen=true
 
 [DoNotDisturb]
+Until=2021,4,11,6,0,0.708
 WhenScreensMirrored=false
 
 [Notifications]
