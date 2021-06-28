@@ -1,0 +1,9 @@
+# host-specifig git config
+
+[credential]
+	# Install integration with KeePassXC
+	# https://github.com/frederick888/git-credential-keepassxc
+	helper = keepassxc
+
+[alias]
+	openterminalatpath = "!f() { konsole --new-tab --workdir \"$1\" ; }; f"

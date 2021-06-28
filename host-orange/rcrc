@@ -1,0 +1,17 @@
+HOSTNAME="orange"
+EXCLUDES="
+"
+SYMLINK_DIRS="
+"
+TAGS="
+    git
+    python
+    reverse
+    zsh
+"
+COPY_ALWAYS="
+    config/fontconfig/*
+    config/gtk-3.0/settings.ini
+    config/gtkrc-2.0
+    gtkrc-2.0
+"
