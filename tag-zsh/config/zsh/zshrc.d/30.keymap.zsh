@@ -11,10 +11,14 @@ bindkey '^[[1;5D'  vi-backward-word
 bindkey '^[[1;5C'  vi-forward-word
 
 # Home, End, PgUp, PgDn
+bindkey '^[[1~' beginning-of-line  # Home
 bindkey '^[[H'  beginning-of-line  # Home
 bindkey '^[[F'  end-of-line        # End
+bindkey '^[[4~' end-of-line        # End
 bindkey '^[[5~' up-history         # PgUp
 bindkey '^[[6~' down-history       # PgDn
+
+bindkey '^[[23~' beep              # F11
 
 # Zsh help files and man pages
 (( $+aliases[run-help] )) && unalias run-help
