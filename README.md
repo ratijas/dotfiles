@@ -59,7 +59,7 @@ Resources:
 
 > The adapter should be recognized by the `r8169` module. However, with some chip revisions the connection may go off and on all the time. The alternative [r8168](https://www.archlinux.org/packages/?name=r8168) should be used for a reliable connection in this case. [Blacklist](https://wiki.archlinux.org/index.php/Blacklist) `r8169`, if [r8168](https://www.archlinux.org/packages/?name=r8168) is not automatically loaded by [udev](https://wiki.archlinux.org/index.php/Udev), see [Kernel modules#Automatic module loading with systemd](https://wiki.archlinux.org/index.php/Kernel_modules#Automatic_module_loading_with_systemd).
 
-Even r8169 is not perfect: my ethernet port voids out after waking up from suspend. Solved it by reloading the kernel module via systemd sleep hook. Install these files from [tag-workarounds](./tag-workarounds):
+Even r8168 is not perfect: my ethernet port voids out after waking up from suspend. Solved it by reloading the kernel module via systemd sleep hook. Install these files from [tag-workarounds](./tag-workarounds):
 
 - /usr/bin/r8168-reload.sh
 - /usr/lib/systemd/system-sleep
