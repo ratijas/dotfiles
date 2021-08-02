@@ -32,6 +32,9 @@ if   (( $+commands[vim] )); then
 elif (( $+commands[nano] )); then
   export VISUAL=nano
 fi
+if   (( $+commands[subl] )); then
+  export VISUAL="subl --wait"
+fi
 export EDITOR="$VISUAL"
 
 # ZSH-z plugin
