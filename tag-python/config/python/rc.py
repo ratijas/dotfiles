@@ -1,14 +1,18 @@
-from __future__ import division, print_function
-
-import os, sys, types
-import time, random
-import re
+import binascii
 from glob import glob
+import itertools
+import os
+import random
+import re
+import struct
+import sys
+import time
+import types
 from pprint import pprint
 
 
 def _CommandLineCaller(cls):
-    """class decorator to allow call instances with '/' operator."""
+    """Class decorator to allow call instances with '/' operator."""
     convert = {
         '__call__': ['__div__',
                      '__rdiv__',
@@ -49,8 +53,8 @@ class _d(object):
 d = _d = _d()
 
 
-# autocomplete and history
-def autocomplete_and_history():
+# complete and history
+def complete_and_history():
     import atexit
     import os
     import readline
@@ -70,8 +74,8 @@ def autocomplete_and_history():
     atexit.register(save_history)
     del atexit, os, readline, rlcompleter, save_history, history_path
 
-autocomplete_and_history()
-del autocomplete_and_history
+complete_and_history()
+del complete_and_history
 
 
 @_CommandLineCaller
@@ -129,36 +133,74 @@ cd = _cd = _cd()
 
 # Enable Pretty Printing for stdout
 ###################################
-def _print_bases(value):
-    print("dec: %d" % value)
-    print("hex: %s" % hex(value))
-    print("oct: %s" % oct(value))
-    print("bin: %s" % bin(value))
-    try:
-        print("chr: %r" % chr(value))
-    except (OverflowError, ValueError):
-        print("chr: (error)")
+class _DisplayHook:
+    def __init__(self):
+        self.bases = True
 
-def displayhook(value):
-    if value is None:
-        return
+    def __call__(self, value):
+        if value is None:
+            return
 
-    try:
-        import __builtin__
-        __builtin__._ = value
-    except ImportError:
-        __builtins__._ = value
+        try:
+            import __builtin__
+            __builtin__._ = value
+        except ImportError:
+            __builtins__._ = value
 
-    if type(value).__name__ in ('int', 'long') and sys.displayhook.bases:
-        printer = _print_bases
-    else:
-        printer = pprint
+        printed = False
+        if self.bases:
+            printed = self.print(value)
+        if not printed:
+            pprint(value)
 
-    printer(value)
+    @classmethod
+    def print(cls, value) -> bool:
+        if isinstance(value, int):
+            cls.print_int(value)
+        elif isinstance(value, float):
+            cls.print_float(value)
+        else:
+            return False
+        return True
 
-displayhook.bases = True
-sys.displayhook = displayhook
-del displayhook
+    @classmethod
+    def print_int(cls, value: int):
+        print("dec: %d" % value)
+        print("hex: %s" % hex(value))
+        print("oct: %s" % oct(value))
+        print("bin: %s" % bin(value))
+        try:
+            print("chr: %r" % chr(value))
+        except (OverflowError, ValueError):
+            print("chr: (error)")
+
+    @classmethod
+    def print_float(cls, value: float):
+        pack = struct.pack('d', value)
+
+        print("dec: %s" % str(value))
+        print("hex: %s" % binascii.b2a_hex(pack, ' ', 2).decode('ascii'))
+        print("bin: %s" % cls.b2a_bin(pack, ' '))
+
+    @classmethod
+    def b2a_bin(cls, value: bytes, sep: str = '', bytes_per_sep: int = 1) -> str:
+        b2a_byte = lambda x: bin(x)[2:].ljust(8, '0') if 0 <= x <= 255 else '(error!)'
+
+        # https://docs.python.org/3/library/itertools.html#itertools-recipes
+        def grouper(iterable, n, fillvalue=None):
+            "Collect data into fixed-length chunks or blocks"
+            # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
+            args = [iter(iterable)] * n
+            return itertools.zip_longest(*args, fillvalue=fillvalue)
+
+        return sep.join(
+            ''.join(chunk)
+            for chunk in grouper((b2a_byte(b) for b in value), bytes_per_sep)
+        )
+
+
+sys.displayhook = _DisplayHook()
+del _DisplayHook
 
 @_CommandLineCaller
 class _baseon(object):
