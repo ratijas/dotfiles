@@ -1,7 +1,7 @@
 # LOL!!1
 # Source: https://aur.archlinux.org/packages/lolbash/lolbash/lolbash.sh
 
-alias wtf='dmesg'
+alias wtf='dmesg -w'
 alias onoz='cat /var/log/errors.log'
 alias rtfm='man'
 
