@@ -6,7 +6,6 @@ if [[ -d "$ZSH_RC_D" ]]; then
   # Suffix (rn) is a glob qualifier. (r) - readable; (n) - numeric sort order.
   # http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers
   for script in "${ZSH_RC_D}"/**/*.zsh(rn); do
-    # echo "hi, file $script"
     [[ -r "$script" ]] && source "$script"
   done
   unset script

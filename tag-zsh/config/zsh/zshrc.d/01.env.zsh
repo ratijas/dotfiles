@@ -19,9 +19,25 @@ fpath+=(
   $HOME/.config/zsh/functions/Misc
 )
 
+# Mark all function files for autoloading.
+#
+# Glob Qualifiers (.) and (@r) match plain files and readable symbolic links;
+# (N) sets the NULL_GLOB option for the current pattern, so it doesn't print
+# an error for non-existent and empty directories; Parameter expansion flag
+# (:t) exands to filename only.
+for dir in $fpath; do
+  local scripts=($dir/*(N.,@r:t))
+  # We don't want to call autoload with an empty list, as it will just print
+  # all functions marked for autoloading instead.
+  if [[ ${#scripts} -ne 0 ]]; then
+    autoload -Uz "${scripts[@]}"
+  fi
+done
+unset dir
+unset scripts
+
 # Load colors definitions
-autoload -U colors && colors
-autoload -U more-colors && more-colors
+colors && more-colors
 
 # Prompt
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
