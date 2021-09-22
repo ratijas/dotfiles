@@ -4,21 +4,32 @@ if [[ $# < 2 ]]; then
   echo "$0 - wrap any command in REPL-style interface"
   echo
   echo "Usage:"
-  echo "    $bold_color$0$reset_color ${underline_color}prompt${reset_color} ${underline_color}cmd${reset_color} [${underline_color}arg${reset_color} ...]"
+  echo "    $bold_color$0$reset_color [${underline_color}options${reset_color} ...] ${underline_color}prompt${reset_color} ${underline_color}cmd${reset_color} [${underline_color}arg${reset_color} ...]"
   echo
-  echo "    prompt        - Analogue to \$PS1"
-  echo "    cmd [arg ...] - Command to run and args to pass. User's input will be passed as the last argument."
+  echo "Options:"
+  echo "    --reset       - Don't memorize the user input for the next prompt."
+  echo "    --split       - Perform word splitting on a query."
+  echo
+  echo "    prompt        - Analogue to \$PS1."
+  echo "    cmd [arg ...] - Command to run and args to pass. User's input will be passed as the last argument(-s)."
   return 1
 fi
+typeset -a reset
+typeset -a split
+zparseopts -D - -split=split -reset=reset
 typeset prompt=$1
 shift
 typeset -a cmdargs=($@)
 typeset -g query
 typeset query_prompt='%%%F{green}'$prompt'%f '
 
-while vared -p "$query_prompt" -e -c query; do
+while (( $#reset )) && query=;
+      vared -p "$query_prompt" -e -c query;
+do
   if [[ "$query" =~ '^\s*$' ]]; then
-    query=""
+    query=
+  elif (( $#split )); then
+    $cmdargs ${=query}
   else
     $cmdargs $query
   fi
