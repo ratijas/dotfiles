@@ -8,6 +8,8 @@
 	excludesfile = ~/.config/git/ignore
 [credential]
 	helper = cache --timeout=3600
+[credential "git://git.code.sf.net/p/zsh/code"]
+	helper = keepassxc
 [color]
 	ui = auto
 [diff]
