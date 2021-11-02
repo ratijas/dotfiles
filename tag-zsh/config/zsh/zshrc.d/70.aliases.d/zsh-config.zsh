@@ -1,5 +1,5 @@
 # General zsh utils
-alias zshconfig="  \$VISUAL $HOME/.zshrc"
-alias zshconfigd=" \$VISUAL $HOME/.config/zsh/zshrc.d/"
-alias zshaliases=" \$VISUAL $HOME/.config/zsh/zshrc.d/70.aliases"
-alias zshaliasesd="\$VISUAL $HOME/.config/zsh/zshrc.d/70.aliases.d/"
+function zshconfig()   { $VISUAL $HOME/.zshrc }
+function zshconfigd()  { $VISUAL $HOME/.config/zsh/zshrc.d/ }
+function zshaliases()  { $VISUAL $HOME/.config/zsh/zshrc.d/70.aliases }
+function zshaliasesd() { $VISUAL $HOME/.config/zsh/zshrc.d/70.aliases.d/ }

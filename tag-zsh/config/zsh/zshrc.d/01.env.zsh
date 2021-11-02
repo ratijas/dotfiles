@@ -49,7 +49,7 @@ elif (( $+commands[nano] )); then
   export VISUAL=nano
 fi
 if   (( $+commands[subl] )); then
-  export VISUAL="subl --wait"
+  export VISUAL=subl-wait
 fi
 export EDITOR="$VISUAL"
 
