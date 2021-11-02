@@ -2,3 +2,5 @@ export GTK_USE_PORTAL=1
 
 # Pixel-perfext smooth scrolling in firefox
 export MOZ_USE_XINPUT2=1
+
+source /home/ratijas/bin/kde-env-master
