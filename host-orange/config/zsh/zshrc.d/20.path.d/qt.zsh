@@ -1,5 +1,5 @@
-if [[ -d $HOME/projects/q ]]; then
-    export PATH=$PATH:$HOME/projects/q/qt5/qtrepotools/bin
+if [[ -d /Volumes/Dump/qt/qt5/qtrepotools/bin ]]; then
+    export PATH=/Volumes/Dump/qt/qt5/qtrepotools/bin:$PATH
 fi
 
 if [[ -d /opt/Qt/Tools/Ninja ]]; then

@@ -16,7 +16,6 @@
 	submodule = log
 [commit]
 	gpgsign = true
-	template = ~/.config/git/commit-template.txt
 [tag]
 	gpgSign = true
 [rerere]
@@ -43,3 +42,5 @@
 	pushInsteadOf = kde:
 [gpush]
 	upstream = gerrit
+[url "https://github.com"]
+	insteadOf = ssh://git@github.com

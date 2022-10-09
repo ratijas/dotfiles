@@ -2,13 +2,19 @@
 bindkey -A emacs main
 
 # Map Backspace and Delete as in GUI text editor
-bindkey '^H' backward-kill-word  # Ctrl+Backspace
 bindkey '^[[3~'     delete-char  # Delete
+
+# Ctrl+keys navigate whole words
+bindkey '^[[1;5D'  backward-word # Ctrl+Left
+bindkey '^[[1;5C'  forward-word  # Ctrl+Right
+bindkey '^H' backward-kill-word  # Ctrl+Backspace
 bindkey '^[[3;5~'   delete-word  # Ctrl+Delete
 
-# Map Ctrl+Arrows to navigate words
-bindkey '^[[1;5D'  vi-backward-word
-bindkey '^[[1;5C'  vi-forward-word
+# Alt+keys navigate sub-words
+bindkey '^[[1;3D'      vi-backward-word      # Alt+Left
+bindkey '^[[1;3C'      vi-forward-word       # Alt+Right
+bindkey '^[^?'         vi-backward-kill-word # Alt+Backspace
+bindkey '^[[3;3~'      delete-word           # Alt+Delete (vi variant does not exist)
 
 # Home, End, PgUp, PgDn
 bindkey '^[[1~' beginning-of-line  # Home
@@ -48,4 +54,3 @@ cd-parent() {
 zle -N                 cd-parent
 zle -N                 cd-back
 bindkey '^[[1;3A'      cd-parent  # Alt+Up
-bindkey '^[[1;3D'      cd-back    # Alt+Left
