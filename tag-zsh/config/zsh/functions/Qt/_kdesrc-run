@@ -1,0 +1,10 @@
+#compdef kdesrc-run
+
+_arguments -s \
+    '(-e --exec)'{-e,--exec}'[Specify program of the module. Default to module name.]' \
+    '(-f --fork)'{-f,--fork}'[Launch the program in a new session]' \
+    '(-q --quiet)'{-q,--quiet}'[Do not print run information]' \
+    '(-h --help)'{-h,--help}'[Print usage information and exit]' \
+    '--list-installed[Print installed modules and exit]'
+
+return 0
