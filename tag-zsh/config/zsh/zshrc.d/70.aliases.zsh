@@ -116,16 +116,16 @@ alias kr="kdesrc-build --no-include-dependencies --no-src --refresh-build"
 alias ks="kdesrc-build --no-include-dependencies"
 
 # Build Plasma Framworks
-alias kbpf="kb plasma-frameworks"
+alias kbpf="kb plasma-framework"
 # Build Plasma Workspace
 alias kbpf="kb plasma-workspace"
 # Build Plasma Desktop
 alias kbpf="kb plasma-desktop"
 # Build Plasma
-alias kbp="kb plasma-frameworks plasma-workspace plasma-desktop"
+alias kbp="kb plasma-framework plasma-workspace plasma-desktop"
 # Build Plasma & Restart
 function kbpr() {
-    kb plasma-frameworks plasma-workspace plasma-desktop $@
+    kb plasma-framework plasma-workspace plasma-desktop $@
     fix-plasma
 }
 
