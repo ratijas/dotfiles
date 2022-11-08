@@ -77,8 +77,10 @@ function kcd() {
     kls -q
 
     local module="$1"
-    module=$(kmod)
-    if [ $? -ne 0 ]; then return 1; fi
+    if [ -z "$module" ]; then
+        module=$(kmod)
+        if [ $? -ne 0 ]; then return 1; fi
+    fi
 
     local srcdir
     srcdir=$(kdesrc-query-global source-dir)
