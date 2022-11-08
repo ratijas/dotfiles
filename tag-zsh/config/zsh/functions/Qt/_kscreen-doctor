@@ -1,0 +1,75 @@
+#compdef kscreen-doctor
+
+local curcontext="$curcontext" state expl
+local -a kscreen_outputs
+
+_kscreen-doctor-fetch-outputs() {
+  kscreen_outputs=($(kscreen-doctor --json | jq --raw-output '.outputs[].name' | sort))
+}
+
+_kscreen-doctor-outputs() {
+  _kscreen-doctor-fetch-outputs
+  _wanted kscreen_connectors expl 'screens currently managed by KScreen' compadd -- ${kscreen_outputs}
+}
+
+_kscreen-doctor-mode() {
+  local output="$1"
+  local -a kscreen_output_modes
+  kscreen_output_modes=($(
+    kscreen-doctor --json \
+    | jq --raw-output --arg output "$output" '
+      .outputs[]
+      | select(.name == $output)
+      | .modes[]
+      | "\(.size.width)x\(.size.height)@\(.refreshRate|round)"
+    '
+  ))
+
+  _wanted kscreen_modes expl 'available modes for an output' compadd -- ${kscreen_output_modes}
+}
+
+_arguments -C \
+    '(-h --help)'{-h,--help}'[Displays help on commandline options]' \
+    '--help-all[Displays help including Qt specific options]' \
+    '(-i --info)'{-i,--info}'[Show runtime information: backends, logging, etc]' \
+    '(-j --json)'{-j,--json}'[Show configuration in JSON format]' \
+    '(-o --outputs)'{-o,--outputs}'[Show outputs]' \
+    '(DPMS)'{-d=,--dpms=}'[Display power management (wayland only)]:status:(on off)' \
+    '--dpms-excluded=[Do not apply the dpms change to the output with said model names]:connector:_kscreen-doctor-outputs' \
+    '(-l --log)'{-l=,--log=}'[Write a comment to the log file]:comment' \
+    '*: :->settings'
+
+case $state in
+  settings)
+    if compset -P 'output.' ; then
+
+      if compset -P 1 '*.' ; then
+        local output; output="${${IPREFIX#*.}%.}"
+
+        if compset -P 1 'rotation.' ; then
+          _alternative 'rotations::(none left right inverted)'
+        elif compset -P 1 'mode.' ; then
+          _kscreen-doctor-mode "$output"
+        elif compset -P 1 'scale.' ; then
+          _alternative 'scale::(1 1.25 1.5 1.75 2 2.25 2.5 2.75 3)'
+        else
+          local -a _kscreen_doctor_output_subcommands
+          _kscreen_doctor_output_subcommands=(
+              "enable:Enable output"
+              "disable:Disable output"
+          )
+          _describe -t kscreen_doctor_output_commands "kscreen-doctor output commands" _kscreen_doctor_output_subcommands
+
+          _sep_parts '(mode position rotation scale)' .
+        fi
+      else
+        _kscreen-doctor-fetch-outputs
+        _sep_parts kscreen_outputs .
+      fi
+    else
+      _sep_parts '(output)' .
+    fi
+  ;;
+esac
+
+return 0
