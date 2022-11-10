@@ -64,6 +64,7 @@ case $state in
           _kscreen_doctor_output_subcommands=(
               "enable:Enable output"
               "disable:Disable output"
+              "primary:Make this output primary"
           )
           _describe -t kscreen_doctor_output_commands "kscreen-doctor output commands" _kscreen_doctor_output_subcommands
 
