@@ -4,7 +4,7 @@ local curcontext="$curcontext" state expl
 local -a kscreen_outputs
 
 _kscreen-doctor-fetch-outputs() {
-  kscreen_outputs=($(kscreen-doctor --json | jq --raw-output '.outputs[].name' | sort))
+  kscreen_outputs=($(kscreen-doctor --json | jq --raw-output '.outputs[] | [.id, .name] | .[]' | sort))
 }
 
 _kscreen-doctor-outputs() {
@@ -15,11 +15,12 @@ _kscreen-doctor-outputs() {
 _kscreen-doctor-mode() {
   local output="$1"
   local -a kscreen_output_modes
+  # note about "\(.id)": stringifying known-to-be integer sounds safer than parsing untrusted intput as an int.
   kscreen_output_modes=($(
     kscreen-doctor --json \
     | jq --raw-output --arg output "$output" '
       .outputs[]
-      | select(.name == $output)
+      | select("\(.id)" == $output || .name == $output)
       | .modes[]
       | "\(.size.width)x\(.size.height)@\(.refreshRate|round)"
     '
