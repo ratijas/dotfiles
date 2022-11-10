@@ -46,12 +46,18 @@ case $state in
       if compset -P 1 '*.' ; then
         local output; output="${${IPREFIX#*.}%.}"
 
-        if compset -P 1 'rotation.' ; then
-          _alternative 'rotations::(none left right inverted)'
-        elif compset -P 1 'mode.' ; then
+        if compset -P 1 'mode.' ; then
           _kscreen-doctor-mode "$output"
+        elif compset -P 1 'rgbrange.' ; then
+          _alternative 'rgbrange::(automatic full limited)'
+        elif compset -P 1 'rotation.' || compset -P 1 'orientation.' ; then
+          _alternative 'rotation::(none normal left right inverted)'
+        elif compset -P 1 'overscan.' ; then
+          _alternative 'overscan::(0 10 20 30 40 50 60 70 80 90 100)'
         elif compset -P 1 'scale.' ; then
           _alternative 'scale::(1 1.25 1.5 1.75 2 2.25 2.5 2.75 3)'
+        elif compset -P 1 'vrrpolicy.' ; then
+          _alternative 'vrrpolicy::(never always automatic)'
         else
           local -a _kscreen_doctor_output_subcommands
           _kscreen_doctor_output_subcommands=(
@@ -60,7 +66,7 @@ case $state in
           )
           _describe -t kscreen_doctor_output_commands "kscreen-doctor output commands" _kscreen_doctor_output_subcommands
 
-          _sep_parts '(mode position rotation scale)' .
+          _sep_parts '(mode orientation overscan position rgbrange rotation scale vrrpolicy)' .
         fi
       else
         _kscreen-doctor-fetch-outputs
