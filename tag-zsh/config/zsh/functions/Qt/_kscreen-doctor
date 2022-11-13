@@ -1,32 +1,54 @@
 #compdef kscreen-doctor
 
 local curcontext="$curcontext" state expl
-local -a kscreen_outputs
-
-_kscreen-doctor-fetch-outputs() {
-  kscreen_outputs=($(kscreen-doctor --json | jq --raw-output '.outputs[] | [.id, .name] | .[]' | sort))
-}
 
 _kscreen-doctor-outputs() {
-  _kscreen-doctor-fetch-outputs
-  _wanted kscreen_connectors expl 'screens currently managed by KScreen' compadd -- ${kscreen_outputs}
+  local -a outputs  # array of 3-tuples: id, name, enabled status (true/false)
+  outputs=(${(f)"$(
+    kscreen-doctor --json |
+    jq --raw-output '
+        .outputs |
+        map(select(.connected)) |
+        sort_by([.enabled | not], [.name]) |
+        .[] |
+        [.id, .name, .enabled] |
+        .[]
+    '
+  )"})
+
+  local -a completions
+  local id name enabled desc
+  for id name enabled in $outputs ; do
+    if [[ "$enabled" == true ]]; then
+      enabled="[Enabled] "  # a bit of right padding, like git does for recent commits list
+    else
+      enabled="[Disabled]"
+    fi
+    desc="$enabled Output ID $id, connected as $name"
+    # Duplicate completions for id and name. But given identical description,
+    # they will occupy the same row.
+    completions+=( "$id:$desc" "$name:$desc" )
+  done
+
+  _describe -t outputs output completions "$@"
 }
 
 _kscreen-doctor-mode() {
   local output="$1"
-  local -a kscreen_output_modes
+  local -a modes
   # note about "\(.id)": stringifying known-to-be integer sounds safer than parsing untrusted intput as an int.
-  kscreen_output_modes=($(
+  modes=(${(f)"$(
     kscreen-doctor --json \
     | jq --raw-output --arg output "$output" '
-      .outputs[]
-      | select("\(.id)" == $output || .name == $output)
-      | .modes[]
-      | "\(.size.width)x\(.size.height)@\(.refreshRate|round)"
+      .outputs[] |
+      select("\(.id)" == $output or .name == $output) |
+      .modes[] |
+      "\(.size.width)x\(.size.height)@\(.refreshRate|round)"
     '
-  ))
+  )"})
 
-  _wanted kscreen_modes expl 'Output's available modes' compadd -- ${kscreen_output_modes}
+  _wanted modes expl mode \
+    compadd -a modes
 }
 
 _arguments -C \
@@ -35,7 +57,7 @@ _arguments -C \
     '(-i --info)'{-i,--info}'[Show runtime information: backends, logging, etc]' \
     '(-j --json)'{-j,--json}'[Show configuration in JSON format]' \
     '(-o --outputs)'{-o,--outputs}'[Show outputs]' \
-    '(DPMS)'{-d=,--dpms=}'[Display power management (wayland only)]:status:(on off)' \
+    '(DPMS)'{-d=,--dpms=}'[Display power management (Wayland only)]:status:(on off)' \
     '--dpms-excluded=[Do not apply the dpms change to the output with said model names]:connector:_kscreen-doctor-outputs' \
     '(-l --log)'{-l=,--log=}'[Write a comment to the log file]:comment' \
     '*: :->settings'
@@ -69,19 +91,23 @@ case $state in
         elif compset -P 1 'vrrpolicy.' ; then
           _alternative 'vrrpolicy::(never always automatic)'
         else
-          local -a _kscreen_doctor_output_subcommands
-          _kscreen_doctor_output_subcommands=(
-              "enable:Enable output"
-              "disable:Disable output"
-              "primary:Make this output primary"
-          )
-          _describe -t kscreen_doctor_output_commands "Output commands" _kscreen_doctor_output_subcommands
-
-          _sep_parts '(mode orientation overscan position rgbrange rotation scale vrrpolicy)' .
+          _describe -t subcommands subcommand '(
+            enable:"Toggle output"
+            disable:"Toggle output"
+            primary:"Make this output primary"
+          )' -- '(
+            mode:"Resolution and refresh rate"
+            orientation:"Display orientation"
+            overscan:"Overscan area size (in %percents)"
+            position:"x and y coordinates"
+            rgbrange:"RGB range"
+            rotation:"Display orientation"
+            scale:"Per-output scaling (Wayland only)"
+            vrrpolicy:"Variable refresh rate (Wayland only)"
+            )' -S '.'
         fi
       else
-        _kscreen-doctor-fetch-outputs
-        _sep_parts kscreen_outputs .
+        _kscreen-doctor-outputs -S '.'
       fi
     else
       _sep_parts '(output)' .
