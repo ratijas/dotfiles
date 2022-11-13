@@ -10,5 +10,6 @@ zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/cache"
 
 zmodload zsh/complist
 autoload -Uz compinit && compinit
+bashcompinit
 # Include hidden files
 _comp_options+=(globdots)
