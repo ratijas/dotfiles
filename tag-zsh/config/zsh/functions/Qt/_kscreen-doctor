@@ -26,7 +26,7 @@ _kscreen-doctor-mode() {
     '
   ))
 
-  _wanted kscreen_modes expl 'available modes for an output' compadd -- ${kscreen_output_modes}
+  _wanted kscreen_modes expl 'Output's available modes' compadd -- ${kscreen_output_modes}
 }
 
 _arguments -C \
@@ -54,7 +54,16 @@ case $state in
         elif compset -P 1 'rotation.' || compset -P 1 'orientation.' ; then
           _alternative 'rotation::(none normal left right inverted)'
         elif compset -P 1 'overscan.' ; then
-          _alternative 'overscan::(0 10 20 30 40 50 60 70 80 90 100)'
+          local -a _kscreen_doctor_output_overscan
+          _kscreen_doctor_output_overscan=(
+            '0:Disable overscan (Default)'
+            '3:Action safe area (Vertical, round down)'
+            '4:Action safe area (Vertical, round up)'
+            '10:Action safe area (Horizontal, 14:9 displayed on 16:9)'
+            '15:Action safe area (Horizontal,  4:3 displayed on 16:9)'
+            '17:Title safe area (Horizontal, 4:3 displayed on 16:9)'
+          )
+          _describe -t kscreen_doctor_output_overscan "Output overscan" _kscreen_doctor_output_overscan -o nosort
         elif compset -P 1 'scale.' ; then
           _alternative 'scale::(1 1.25 1.5 1.75 2 2.25 2.5 2.75 3)'
         elif compset -P 1 'vrrpolicy.' ; then
@@ -66,7 +75,7 @@ case $state in
               "disable:Disable output"
               "primary:Make this output primary"
           )
-          _describe -t kscreen_doctor_output_commands "kscreen-doctor output commands" _kscreen_doctor_output_subcommands
+          _describe -t kscreen_doctor_output_commands "Output commands" _kscreen_doctor_output_subcommands
 
           _sep_parts '(mode orientation overscan position rgbrange rotation scale vrrpolicy)' .
         fi
