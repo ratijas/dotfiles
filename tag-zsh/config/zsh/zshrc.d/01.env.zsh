@@ -18,6 +18,7 @@ fpath+=(
   $HOME/.config/zsh/functions
   $HOME/.config/zsh/functions/Misc
   $HOME/.config/zsh/functions/Qt
+  /usr/local/kde/share/zsh/site-functions
 )
 
 # Mark all function files for autoloading.
