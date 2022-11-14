@@ -48,7 +48,7 @@ plugins=(... lol)
 | `tldr`       | `less`                                                          |
 | `violenz`    | `git rebase`                                                    |
 | `visible`    | `echo`                                                          |
-| `wtf`        | `dmesg`                                                         |
+| `wtf`        | `dmesg -w`                                                       |
 | `yolo`       | `git commit -m "$(curl -s https://whatthecommit.com/index.txt)"` |
 
 ## Usage Examples
