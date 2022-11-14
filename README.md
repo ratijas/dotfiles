@@ -31,6 +31,20 @@ It is possible to update some of them using `git subtree` commands.
    git subtree pull --prefix=tag-zsh/config/zsh/zshrc.d/50.plugins.d/zsh-z --squash git@github.com:agkozak/zsh-z.git master
    ```
 
+### Adding new plugins
+
+The hard way. Works for any locally cloned repo, not only for oh-my-zsh. If prefix is not needed (i.e. the whole repository is a plugin), then local cloning and subtree splitting should be omitted.
+
+  ```sh
+  cd path/to/ohmyzsh
+  grt  # optionally, cd to git root
+  local plugin commit
+  plugin=gitignore  # for example
+  commit=$( git subtree split -P plugins/$plugin )
+  cd ~/.dotfiles
+  git subtree add --prefix=tag-zsh/config/zsh/zshrc.d/50.plugins.d/$plugin --squash path/to/ohmyzsh $commit
+  ```
+
 ### Host "getaway"
 
  - [git-credential-keepassxc](https://github.com/frederick888/git-credential-keepassxc): Helper that allows Git (and shell scripts) to use KeePassXC as credential store.
