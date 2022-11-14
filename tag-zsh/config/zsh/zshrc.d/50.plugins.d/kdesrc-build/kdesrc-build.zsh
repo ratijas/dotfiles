@@ -99,15 +99,26 @@ function kcd() {
 
   cd "$target"
 }
+function _kcd() {
+  local expl
+  kls -q
+  _wanted modules expl 'module' \
+    compadd -a KDESRC_CACHED_MODULES
+}
+compdef _kcd kcd
 
 # Mnemonics:
 
+alias pv="plasmoidviewer -a"
+
 # Build
 alias kb="kdesrc-build --no-include-dependencies --no-src"
-# Refresh
-alias kr="kdesrc-build --no-include-dependencies --no-src --refresh-build"
+# ReBuild
+alias krb="kdesrc-build --no-include-dependencies --no-src --refresh-build"
 # Source
-alias ks="kdesrc-build --no-include-dependencies"
+alias ks="kdesrc-build --no-include-dependencies --src-only"
+# Run
+alias kr="kdesrc-run"
 
 # Build Plasma Framworks
 alias kbpf="kb plasma-framework"
@@ -122,6 +133,8 @@ function kbpr() {
   kb plasma-framework plasma-workspace plasma-desktop $@
   fix-plasma
 }
+compdef kbpr=kdesrc-build
+
 # KScreen stuff
 alias ksc="kb --stop-on-failure libkscreen kscreen && systemctl --user restart plasma-kscreen.service plasma-kded.service && kcmshell5 kcm_kscreen"
 function kscreen-aoc-setup-x11() {
@@ -130,9 +143,10 @@ function kscreen-aoc-setup-x11() {
 
 # KF6
 alias k6="kdesrc-build --rc-file=$HOME/.config/kf6.kdesrc-buildrc"
+# Source
+alias ks6="k6 --no-include-dependencies --src-only"
 # Build
 alias kb6="k6 --no-include-dependencies --no-src"
-# Refresh
-alias kr6="k6 --no-include-dependencies --no-src --refresh-build"
-# Source
-alias ks6="k6 --no-include-dependencies"
+# ReBuild
+alias krb6="k6 --no-include-dependencies --no-src --refresh-build"
+# There's no --rc-file= support in kdesrc-run?

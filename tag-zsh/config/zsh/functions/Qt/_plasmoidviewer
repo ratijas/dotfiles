@@ -1,0 +1,51 @@
+#compdef plasmoidviewer
+
+local expl ret=1
+
+function _plasma_list_packages() {
+  local global_dir purpose="$1" type="${2:-Plasma/Applet}"
+  local -a packages containments
+  # Then strip " -- " prefix and " *" suffix (i.e. everything after and including first whitespace).
+  # (@) array Expansion Flags are needed because we need to operate on each element separately.
+  packages=( ${(f)"$(
+    _call_program plasma-list-packages \
+      kpackagetool5 --type "$type" --list --global
+    )"} )
+  # First line is an output header, it contains path where plugins are probed.
+  global_dir="${${${packages[1]}##* in }%/}"
+  packages[1]=()
+
+  if [[ "$purpose" == "containment" ]]; then
+    # No need to get jq involved. We simply look for a magic string, which
+    # hopefully won't be named literally in any other irrelevant field.
+    containments=( ${${${(f)"$(
+      # Glob Qualifiers (.) and (@r) match plain files and readable symbolic links;
+      # (N) sets the NULL_GLOB option for the current pattern, so it doesn't print
+      # an error for non-existent and empty directories.
+      grep --files-with-matches -R "Plasma/Containment" $global_dir/*/metadata.json(N.,@r)
+    )"}#$global_dir/}%/metadata.json} )
+    packages=( $containments )
+  else
+    # Don't filter containments out in an 'else' branch: they might be perfectly
+    # executable applets on their own, e.g. org.kde.plasma.folder view.
+  fi
+
+  _wanted "${purpose}s" expl "$purpose" \
+      compadd -a packages
+}
+
+_arguments -C \
+  '(-c --containment)'{-c=,--containment=}'[override containment package id]::: _plasma_list_packages containment' \
+  '(-a --applet)'{-a=,--applet=}'[applet package id]::: _plasma_list_packages applet' \
+  '(-f --formfactor)'{-f=,--formfactor=}'[form factor]:form-factor:(horizontal vertical mediacenter planar application)' \
+  '(-l --location)'{-l=,--location=}'[location constraint]::location:(floating desktop fullscreen topedge bottomedge leftedge rightedge)' \
+  '(-x --xPosition)'{-x=,--xPosition=}'[set window x position on screen]:::_numbers' \
+  '(-y --yPosition)'{-y=,--yPosition=}'[set window y position on screen]:::_numbers' \
+  '(-s --size)'{-s=,--size=}'[set window size]:size widthXheight:' \
+  '(-p --pixmapcache)'{-p=,--pixmapcache=}'[size (in kB) of the pixmap cache]:size in kB::_numbers' \
+  '(-t --theme)'{-t=,--theme=}'[override theme which the shell will use]::: _plasma_list_packages theme Plasma/Theme' \
+  '(-)'{-h,--help}'[print usage information and exit]' \
+  '(-)'{-v,--version}'[displays version information]' \
+  && ret=0
+
+return $ret
