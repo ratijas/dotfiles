@@ -1,10 +1,12 @@
-LFCD="/usr/share/lf/lfcd.sh"
-if [ ! -f "$LFCD" ]; then
-  LFCD="/etc/profile.d/lfcd.sh"
-fi
-if [ -f "$LFCD" ]; then
-  emulate sh -c 'source "$LFCD"'
+() {
+  local LFCD
+  for LFCD in /usr/share/lf/lfcd.sh /etc/profile.d/lfcd.sh ; do
+    if [ -r "$LFCD" ]; then
+      emulate sh -c 'source "$LFCD"'
+      break
+    fi
+  done
+
   alias cdlf=lfcd
   bindkey -s '^o' 'lfcd\n'
-fi
-unset LFCD
+}
