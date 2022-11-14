@@ -28,7 +28,7 @@ It is possible to update some of them using `git subtree` commands.
 
  - [ZSH-z](https://github.com/agkozak/zsh-z): Jump quickly to directories that you have visited "frecently."
    ```sh
-   git subtree add --prefix=tag-zsh/config/zsh/zshrc.d/50.plugins.d/zsh-z --squash git@github.com:agkozak/zsh-z.git master
+   git subtree pull --prefix=tag-zsh/config/zsh/zshrc.d/50.plugins.d/zsh-z --squash git@github.com:agkozak/zsh-z.git master
    ```
 
 ### Host "getaway"
