@@ -1,3 +1,4 @@
+# kdesrc-build related utilities
 
 function kde-rebuild-only() {
   kdesrc-build --no-src --no-include-dependencies $@
@@ -136,6 +137,7 @@ function kbpr() {
 compdef kbpr=kdesrc-build
 
 # KScreen stuff
+alias kd="kscreen-doctor"
 alias ksc="kb --stop-on-failure libkscreen kscreen && systemctl --user restart plasma-kscreen.service plasma-kded.service && kcmshell5 kcm_kscreen"
 function kscreen-aoc-setup-x11() {
   kscreen-doctor output.DP-3.enable output.DP-3.mode.2560x1440@120 output.DP-3.position.0,0 output.DP-2.enable output.DP-2.position.2560,360
