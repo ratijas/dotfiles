@@ -1,5 +1,9 @@
 #compdef plasmoidviewer
 
+# SPDX-FileCopyrightText: 2022 ivan tkachenko <me@ratijas.tk>
+#
+# SPDX-License-Identifier: GPL-2.0-or-later
+
 local expl ret=1
 
 function _plasma_list_packages() {

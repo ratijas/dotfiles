@@ -118,15 +118,17 @@ alias kb="kdesrc-build --no-include-dependencies --no-src"
 alias krb="kdesrc-build --no-include-dependencies --no-src --refresh-build"
 # Source
 alias ks="kdesrc-build --no-include-dependencies --src-only"
+# Source & Build
+alias ksb="kdesrc-build --no-include-dependencies"
 # Run
 alias kr="kdesrc-run"
 
 # Build Plasma Framworks
 alias kbpf="kb plasma-framework"
 # Build Plasma Workspace
-alias kbpf="kb plasma-workspace"
+alias kbpw="kb plasma-workspace"
 # Build Plasma Desktop
-alias kbpf="kb plasma-desktop"
+alias kbpd="kb plasma-desktop"
 # Build Plasma
 alias kbp="kb plasma-framework plasma-workspace plasma-desktop"
 # Build Plasma & Restart
@@ -135,10 +137,16 @@ function kbpr() {
   fix-plasma
 }
 compdef kbpr=kdesrc-build
+compdef kde-rebuild-world=kdesrc-build
 
 # KScreen stuff
 alias kd="kscreen-doctor"
-alias ksc="kb --stop-on-failure libkscreen kscreen && systemctl --user restart plasma-kscreen.service plasma-kded.service && kcmshell5 kcm_kscreen"
+alias kdo="kscreen-doctor -o"
+function ksc() {
+  kb --stop-on-failure plasma-wayland-protocols libkscreen kscreen kwin plasma-workspace
+  systemctl --user restart plasma-kscreen.service plasma-kded.service plasma-plasmashell.service plasma-kwin_x11.service
+  kcmshell5 kcm_kscreen
+}
 function kscreen-aoc-setup-x11() {
   kscreen-doctor output.DP-3.enable output.DP-3.mode.2560x1440@120 output.DP-3.position.0,0 output.DP-2.enable output.DP-2.position.2560,360
 }

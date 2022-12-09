@@ -1,5 +1,9 @@
 #compdef kscreen-doctor
 
+# SPDX-FileCopyrightText: 2022 ivan tkachenko <me@ratijas.tk>
+#
+# SPDX-License-Identifier: GPL-2.0-or-later
+
 local curcontext="$curcontext" state expl ret=1
 
 _kscreen-doctor-outputs() {
