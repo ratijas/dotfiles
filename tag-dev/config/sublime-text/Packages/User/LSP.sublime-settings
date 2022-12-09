@@ -1,0 +1,30 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+    "clients": {
+        "clangd": {
+            "enabled": true,
+        },
+        "rust-analyzer":
+        {
+            "enabled": true,
+        },
+        "ruby":
+        {
+			"enabled": false,
+		},
+        "qmlls6": {
+            "enabled": false,
+            "command": [
+                "qmlls6"
+            ],
+            "selector": "source.qml | source.qmldir",
+        },
+        "qml-lsp by jan": {
+            "enabled": false,
+            "command": [
+                "/home/ratijas/kde/src/playground/sdk/qml-lsp/qml-lsp-static"
+            ],
+            "selector": "source.qml | source.qmldir",
+        },
+    },
+}

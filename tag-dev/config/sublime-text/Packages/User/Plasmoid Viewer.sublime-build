@@ -1,0 +1,5 @@
+{
+    "selector": "source.qml",
+    "target": "plasmoidviewer_build",
+    "cancel": {"kill": true},
+}

@@ -2,6 +2,7 @@ HOSTNAME="orange"
 EXCLUDES="
 "
 SYMLINK_DIRS="
+    config/sublime-text/Packages/User
 "
 TAGS="
     git

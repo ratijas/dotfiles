@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP-pyright/LSP-pyright.sublime-settings"
+
+{
+    "settings": {
+        "pyright.dev_environment": "sublime_text",
+    },
+    "enabled": true,
+}

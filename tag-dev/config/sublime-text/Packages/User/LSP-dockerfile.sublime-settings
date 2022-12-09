@@ -1,0 +1,12 @@
+// Settings in here override those in "LSP-dockerfile/LSP-dockerfile.sublime-settings"
+
+{
+	"command": [
+		"docker",
+		"run",
+		"--rm",
+		"--",
+		"rcjsuen/docker-langserver",
+		"--stdio"],
+	"enabled": false,
+}

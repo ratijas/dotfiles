@@ -1,0 +1,55 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"CMake",
+		"Debugger",
+		"Default",
+		"DocBlockr",
+		"Dockerfile Syntax Highlighting",
+		"Expand Selection to Line Upwards",
+		"Expand Selection to Whitespace",
+		"HLSL Syntax",
+		"IRC Syntax",
+		"JSON Reindent",
+		"LanguageTool",
+		"LSP",
+		"LSP-file-watcher-chokidar",
+		"LSP-json",
+		"LSP-pyright",
+		"LSP-rust-analyzer",
+		"MarkdownEditing",
+		"MarkdownPreview",
+		"Mediawiker",
+		"Meson",
+		"Ninja",
+		"OpenGL Shading Language (GLSL)",
+		"OverrideAudit",
+		"Package Control",
+		"PackageDev",
+		"PowerShell",
+		"Pretty JSON",
+		"RON",
+		"RPM Spec Syntax",
+		"Rust Enhanced",
+		"SideBarEnhancements",
+		"Solarized Color Scheme",
+		"SublimeGDB",
+		"SublimeLinter",
+		"Terminal",
+		"Terminus",
+		"TOML",
+		"VimL",
+	],
+	"repositories":
+	[
+		"https://github.com/deathaxe/sublime-commands"
+	],
+	"package_name_map":
+	{
+		"sublime-commands": "Default",
+	},
+}
