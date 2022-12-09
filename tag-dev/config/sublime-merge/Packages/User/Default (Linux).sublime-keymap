@@ -1,0 +1,33 @@
+[
+    {
+        "keys": ["ctrl+shift+up"],
+        "command": "move_commit",
+        "args": {
+            "commit": "$commit", "down": false
+        }
+    },
+    {
+        "keys": ["ctrl+shift+down"],
+        "command": "move_commit",
+        "args": {
+            "commit": "$commit", "down": true
+        }
+    },
+    {
+        "keys": ["ctrl+alt+shift+up"],
+        "command": "push",
+        "args": {"mode": "push --force-with-lease"}
+    },
+    {
+        "keys": ["ctrl+alt+shift+down"],
+        "command": "fetch",
+        "args": {"mode": "fetch --prune"}
+    },
+    {
+        "keys": ["ctrl+shift+alt+t"],
+        "command": "git",
+        "args": {
+            "argv": ["openterminalatpath", "$working_dir"]
+        }
+    }
+]

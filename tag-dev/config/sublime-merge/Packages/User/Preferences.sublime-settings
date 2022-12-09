@@ -1,0 +1,32 @@
+{
+	"font_face": "Fira Code",
+	"added_words":
+	[
+		"Postamat",
+		"postamat",
+		"stdout",
+		"whitespaces",
+		"enum",
+		"serializer",
+		"uncreatable",
+		"cosmit",
+		"whitespace",
+		"Uncomment",
+		"const",
+		"plasmoid",
+	],
+	"theme": "Merge Dark.sublime-theme",
+	"side_bar_layout": "commit_graph_as_column",
+	"ignore_diff_white_space": false,
+	"hardware_acceleration": "opengl",
+	"expand_merge_commits_by_default": false,
+	"diff_style": "auto",
+	"ignored_words":
+	[
+		"Coverity"
+	],
+	"image_diff_style": "side-by-side",
+	"overlay_scroll_bars": "disabled",
+	"font_size": 15,
+	"tab_size": 8,
+}

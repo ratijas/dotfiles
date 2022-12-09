@@ -3,8 +3,10 @@ EXCLUDES="
 "
 SYMLINK_DIRS="
     config/sublime-text/Packages/User
+    config/sublime-merge/Packages/User
 "
 TAGS="
+    dev
     git
     python
     reverse

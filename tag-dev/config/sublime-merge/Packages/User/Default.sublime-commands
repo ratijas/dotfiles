@@ -1,0 +1,9 @@
+[
+    {
+        "caption": "Open Repository in Terminal",
+        "command": "git",
+        "args": {
+            "argv": ["openterminalatpath", "$working_dir"]
+        }
+    }
+]
