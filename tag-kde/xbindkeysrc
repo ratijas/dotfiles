@@ -1,6 +1,0 @@
-# zoom the screen with Meta+scroll in KDE/KWin
-"qdbus org.kde.kglobalaccel /component/kwin invokeShortcut view_zoom_in"
-    Mod4 + b:4
-
-"qdbus org.kde.kglobalaccel /component/kwin invokeShortcut view_zoom_out"
-    Mod4 + b:5
