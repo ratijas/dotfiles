@@ -108,6 +108,8 @@ function _kcd() {
 }
 compdef _kcd kcd
 
+alias kcd6="cd $HOME/kde/src-kf6"
+
 # Mnemonics:
 
 alias pv="plasmoidviewer -a"
@@ -160,3 +162,5 @@ alias kb6="k6 --no-include-dependencies --no-src"
 # ReBuild
 alias krb6="k6 --no-include-dependencies --no-src --refresh-build"
 # There's no --rc-file= support in kdesrc-run?
+# Run
+alias kr6="k6 --run"
