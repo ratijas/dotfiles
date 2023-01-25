@@ -14,11 +14,12 @@ mkdir -p "${WGETRC:h}"
   touch "$WGETRC"
 }
 
-fpath+=(
+fpath=(
   $HOME/.config/zsh/functions
   $HOME/.config/zsh/functions/Misc
   $HOME/.config/zsh/functions/Qt
   /usr/local/kde/share/zsh/site-functions
+  $fpath
 )
 
 # Mark all function files for autoloading.
