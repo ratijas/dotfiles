@@ -83,3 +83,40 @@ Resources:
 - [My blog post](https://t.me/ratijas_life/108)
 - [Arch Linux bug tracker](https://bugs.archlinux.org/task/67314)
 - [GitHub issue](https://github.com/mtorromeo/r8168/issues/30)
+
+### SDDM
+
+Some useful tips about login manager.
+
+[How to enable trackpad tap to click in SDDM login page?](https://askubuntu.com/questions/1345573/how-to-enable-trackpad-tap-to-click-in-sddm-login-page)
+
+```sh
+sudoedit /etc/X11/xorg.conf.d/20-touchpad.conf
+```
+
+```
+Section "InputClass"
+        Identifier "libinput touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+
+        Option "Tapping" "on"
+        Option "NaturalScrolling" "on"
+        Option "MiddleEmulation" "on"
+        Option "DisableWhileTyping" "on"
+EndSection
+```
+
+- [SDDM scaling on 4k display](https://old.reddit.com/r/kde/comments/hphxx4/sddm_scaling_on_4k_display/)
+- [DPI settings](https://wiki.archlinux.org/title/SDDM#DPI_settings)
+
+```sh
+sudoedit /etc/sddm.conf
+```
+
+```
+[X11]
+#EnableHiDPI=true
+ServerArguments=-nolisten tcp -dpi 192
+```
