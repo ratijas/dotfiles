@@ -57,7 +57,7 @@ class AddTimeCommand(sublime_plugin.TextCommand):
             start_string_content_region = attr_content_region(self.view, tag_region, "start")
             if start_string_content_region is None: continue
 
-            start_str = self.view.substr(start_string_content_region).rstrip('Z')
+            start_str = self.view.substr(start_string_content_region).rstrip('Z').replace(' ', '')
             start_time = datetime.fromisoformat(start_str)
 
             end_string_content_region = attr_content_region(self.view, tag_region, "end")

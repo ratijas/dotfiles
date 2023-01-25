@@ -1,7 +1,7 @@
 {
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"font_face": "Fira Code",
-	"font_size": 15,
+	"font_size": 16,
 	"folder_exclude_patterns": [
 		".svn", ".git", ".hg", "CVS", ".Trash", ".Trash-*",
 		"qt*/build*",
@@ -10,7 +10,6 @@
 	"ignored_packages":
 	[
 		"LSP-rust-analyzer",
-		"Markdown",
 		"Rust",
 		"Vintage",
 	],

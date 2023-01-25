@@ -1,4 +1,4 @@
 {
-    "shell_cmd": "kdesrc-build --no-include-dependencies --no-src --stop-on-failure libkscreen kscreen && systemctl --user restart plasma-kscreen.service plasma-kded.service && kcmshell5 kcm_kscreen",
+    "shell_cmd": "kdesrc-build --no-include-dependencies --no-src --stop-on-failure libkscreen kscreen && systemctl --user restart plasma-kscreen.service plasma-kded.service && env QT_FORCE_STDERR_LOGGING=1 kcmshell5 kcm_kscreen",
     "syntax": "scope:source.build_output.kdesrc-build",
 }
