@@ -108,6 +108,24 @@ function _kcd() {
 }
 compdef _kcd kcd
 
+# p10k integration
+prompt_kf_version() {
+  local ver=5
+  local fg="white"
+  local bg="magenta"
+  if (( $LD_LIBRARY_PATH[(I)/usr/local/kde6/lib] )) ; then
+    ver=6
+    bg=darkseagreen
+  fi
+
+  _p9k_prompt_segment "$0" "$bg" "$fg" 'VCS_BRANCH_ICON' 0 '' "KF$ver"
+}
+
+_p9k_prompt_kf_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[kdesrc-build]'
+}
+
+alias kf6="source kf6.env"
 alias kcd6="cd $HOME/kde/src-kf6"
 
 # Mnemonics:
