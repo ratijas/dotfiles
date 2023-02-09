@@ -23,7 +23,10 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/cache"
 
 zmodload zsh/complist
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+# allow insecure directories, because this setup is often copied to other
+# users sharing the same kdesrc install directory with zsh scripts.
+compinit -u
 bashcompinit
 # Include hidden files
 _comp_options+=(globdots)
