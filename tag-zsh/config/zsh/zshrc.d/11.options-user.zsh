@@ -12,7 +12,7 @@ setopt PUSHD_TO_HOME
 
 setopt ALWAYS_TO_END
 setopt COMPLETE_IN_WORD
-setopt WARN_CREATE_GLOBAL
+# setopt WARN_CREATE_GLOBAL
 # setopt WARN_NESTED_VAR  # it's too restrictive
 
 # 16.2.4 History

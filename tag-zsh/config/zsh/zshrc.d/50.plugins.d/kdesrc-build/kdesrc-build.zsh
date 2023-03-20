@@ -5,6 +5,7 @@ function kde-rebuild-only() {
 }
 
 alias world=kde-rebuild-world
+alias world6="kde-rebuild-world --rc-file=$HOME/.config/kf6.kdesrc-buildrc"
 
 typeset -ga KDESRC_CACHED_MODULES
 
@@ -170,6 +171,8 @@ function ksc() {
 function kscreen-aoc-setup-x11() {
   kscreen-doctor output.DP-3.enable output.DP-3.mode.2560x1440@120 output.DP-3.position.0,0 output.DP-2.enable output.DP-2.position.2560,360
 }
+
+alias kcmshell=kcmshell5
 
 # KF6
 alias k6="kdesrc-build --rc-file=$HOME/.config/kf6.kdesrc-buildrc"

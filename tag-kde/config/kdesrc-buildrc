@@ -112,3 +112,13 @@ end options
 options kirigami
     # cmake-options -DBUILD_EXAMPLES=ON
 end options
+
+options polkit-qt-1
+    # See https://invent.kde.org/libraries/polkit-qt-1/-/issues/2
+    cmake-options -DBUILD_TESTING=ON -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo
+end options
+
+options modemmanager-qt
+    # base code needs to be built before examples
+    cmake-options -DBUILD_TESTING=ON -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo
+end options

@@ -3,3 +3,6 @@
 *.sublime-project
 *.sublime-workspace
 .directory
+
+.cache/
+compile_commands.json

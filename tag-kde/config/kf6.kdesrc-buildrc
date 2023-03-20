@@ -14,10 +14,13 @@ global
 
     # Where to download source code. By default the build directory and
     # logs will be kept under this directory as well.
-    source-dir ~/kde/src-kf6 # Make this ~/kde/src if you want to use same repos as KF6
+    source-dir ~/kde/src6 # Make this ~/kde/src if you want to use same repos as KF6
 
     # Where to perform the build of source code before installation.
-    build-dir ~/kde/build-kf6
+    build-dir ~/kde/build6
+
+    # Stop the build process on the first failure
+    stop-on-failure false
 
     directory-layout flat
     include-dependencies true
@@ -29,7 +32,8 @@ global
 
     # This can be set to a specific value if auto-detection fails.
     # Set to 'auto' to use (the number of detected cores) - 1
-    num-cores auto
+    # num-cores auto
+    num-cores 5
 
     # This is the same as above but used for heavyweight modules like
     # qtwebengine, though you can use it for modules yourself. A conservative
@@ -45,7 +49,7 @@ global
     # Not version-prefixed on KDE Invent, but Qt5 is version prefixed instead.
     git-repository-base qt6-copy https://invent.kde.org/qt/qt/
 
-    cmake-options -DBUILD_TESTING=ON -DBUILD_EXAMPLES=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    cmake-options -DBUILD_TESTING=ON -DBUILD_EXAMPLES=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo -DQT_MAJOR_VERSION=6 -DBUILD_WITH_QT6=ON
 end global
 
 options frameworks
@@ -84,18 +88,44 @@ end options
 #     ignore-modules kdelibs4support baloo
 # end options
 
-options kdecoration
-    branch work/ratijas/666
-end options
-
 options kirigami-gallery
-    branch work/ratijas/666
-end options
-
-options breeze
     branch work/ratijas/666
 end options
 
 options kirigami
     # cmake-options -DBUILD_EXAMPLES=ON
 end options
+
+options polkit-qt-1
+    # See https://invent.kde.org/libraries/polkit-qt-1/-/issues/2
+    cmake-options -DBUILD_TESTING=ON -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo -DQT_MAJOR_VERSION=6 -DBUILD_WITH_QT6=ON
+end options
+
+options modemmanager-qt
+    # base code needs to be built before examples
+    cmake-options -DBUILD_TESTING=ON -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo
+end options
+
+options qt6-set
+    prefix /usr/local/kde6
+    branch 6.4.2
+end options
+
+options qtvirtualkeyboard
+    cmake-options -DQT_BUILD_TESTS=TRUE -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                  -DQT_AVOID_CMAKE_ARCHIVING_API=TRUE
+end options
+
+options qtdeclarative
+    cmake-options -DQT_BUILD_TESTS=TRUE -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                  -DQT_AVOID_CMAKE_ARCHIVING_API=TRUE \
+                  -DQT_FEATURE_private_tests=TRUE \
+                  -DQT_FEATURE_developer_build=TRUE \
+
+end options
+
+module gammaray
+    repository https://github.com/KDAB/GammaRay/
+    branch master
+    cmake-options -DGAMMARAY_QT6_BUILD=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
+end module
