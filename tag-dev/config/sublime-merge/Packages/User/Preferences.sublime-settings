@@ -14,6 +14,7 @@
 		"Uncomment",
 		"const",
 		"plasmoid",
+		"Kirigami",
 	],
 	"theme": "Merge Dark.sublime-theme",
 	"side_bar_layout": "commit_graph_as_column",

@@ -18,6 +18,7 @@
 		"JSON Reindent",
 		"LanguageTool",
 		"LSP",
+		"LSP-clangd",
 		"LSP-file-watcher-chokidar",
 		"LSP-json",
 		"LSP-pyright",
