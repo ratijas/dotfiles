@@ -5,10 +5,10 @@
 	],
 	"installed_packages":
 	[
+		"Clang Format",
 		"CMake",
-		"CMakeBuilder",
 		"Debugger",
-		"Default",
+		"Decent Swift Syntax",
 		"DocBlockr",
 		"Dockerfile Syntax Highlighting",
 		"Expand Selection to Line Upwards",
@@ -16,7 +16,8 @@
 		"HLSL Syntax",
 		"IRC Syntax",
 		"JSON Reindent",
-		"LanguageTool",
+		"kdesrc-build",
+		"Kotlin",
 		"LSP",
 		"LSP-clangd",
 		"LSP-file-watcher-chokidar",
@@ -25,7 +26,6 @@
 		"LSP-rust-analyzer",
 		"MarkdownEditing",
 		"MarkdownPreview",
-		"Mediawiker",
 		"Meson",
 		"Ninja",
 		"OpenGL Shading Language (GLSL)",
@@ -34,6 +34,7 @@
 		"PackageDev",
 		"PowerShell",
 		"Pretty JSON",
+		"QML",
 		"RON",
 		"RPM Spec Syntax",
 		"Rust Enhanced",
@@ -41,18 +42,22 @@
 		"Solarized Color Scheme",
 		"SublimeGDB",
 		"SublimeLinter",
+		"SVG Viewer",
 		"Terminal",
 		"Terminus",
 		"TOML",
+		"UnitTesting",
 		"VimL",
 		"Zeal",
 	],
 	"repositories":
 	[
-		"https://github.com/deathaxe/sublime-commands"
 	],
 	"package_name_map":
 	{
-		"sublime-commands": "Default",
 	},
+	"ignore_vcs_packages":
+	[
+		"QML"
+	],
 }

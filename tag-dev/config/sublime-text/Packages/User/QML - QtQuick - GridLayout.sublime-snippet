@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+GridLayout {
+    rows: ${1:2}
+    columns: ${2:2}
+    rowSpacing: Kirigami.Units.${3:smallSpacing}
+    columnSpacing: Kirigami.Units.${4:smallSpacing}
+    ${5}
+}
+]]></content>
+    <tabTrigger>gl</tabTrigger>
+    <scope>source.qml - meta.block.js</scope>
+</snippet>

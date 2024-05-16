@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+RowLayout {
+    spacing: Kirigami.Units.${1:smallSpacing}
+    ${2}
+}
+]]></content>
+    <tabTrigger>rl</tabTrigger>
+    <scope>source.qml - meta.block.js</scope>
+</snippet>

@@ -1,16 +1,20 @@
 {
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"font_face": "Fira Code",
-	"font_size": 16,
+	"font_size": 11,
 	"folder_exclude_patterns": [
 		".svn", ".git", ".hg", "CVS", ".Trash", ".Trash-*",
 		"qt*/build*",
 		"qt*/install",
+		".flatpak-builder"
 	],
 	"ignored_packages":
 	[
-		"LSP-rust-analyzer",
+		"Debugger",
+		"LSP-pyright",
 		"Rust",
+		"SublimeLinter",
+		"UnitTesting",
 		"Vintage",
 	],
 	"trim_trailing_white_space_on_save": "not_on_caret",
@@ -61,7 +65,6 @@
 		"Yakuake",
 		"Загороднему",
 		"виджетах",
-		"",
 		"виджетов",
 		"разблокировки",
 		"struct",
@@ -70,6 +73,15 @@
 		"backends",
 		"backend",
 		"libkscreen",
+		"filesystem",
+		"filesystems",
+		"enum",
+		"Flatpak",
+		"tabbars",
+		"tabbar",
+		"combobox",
+		"kde",
+		"href"
 	],
 	"dictionary": "Packages/User/dictionaries/ru_RU.dic",
 	"close_deleted_files": false,
@@ -89,7 +101,19 @@
 		"*.tga",
 		"*.ttf",
 		"*.zip",
-		"/home/ratijas/projects/telegram/tdesktop/out/**",
-		"out/**",
+		"out/**"
 	],
+	"update_check": false,
+	"find_in_files_context_lines": 5,
+	"ignored_words":
+	[
+		"tkachenko"
+	],
+	"close_windows_when_empty": false,
+	"reveal_menu": true,
+	"font_options":
+	[
+		"gray_antialias",
+	],
+	"index_files": true,
 }

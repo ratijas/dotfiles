@@ -1,0 +1,8 @@
+{
+    "docsets_user": [
+        {
+            "name": "Qt",
+            "selector": "source.qml, source.qmldir"
+        }
+    ],
+}

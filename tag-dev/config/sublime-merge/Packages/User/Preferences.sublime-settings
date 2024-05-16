@@ -15,19 +15,34 @@
 		"const",
 		"plasmoid",
 		"Kirigami",
+		"backend",
+		"Flatpak",
 	],
 	"theme": "Merge Dark.sublime-theme",
 	"side_bar_layout": "commit_graph_as_column",
 	"ignore_diff_white_space": false,
 	"hardware_acceleration": "opengl",
 	"expand_merge_commits_by_default": false,
-	"diff_style": "auto",
+	"diff_style": "inline",
 	"ignored_words":
 	[
 		"Coverity"
 	],
 	"image_diff_style": "side-by-side",
 	"overlay_scroll_bars": "disabled",
-	"font_size": 15,
+	"font_size": 12,
 	"tab_size": 8,
+	"repository_aliases":
+	{
+		"/home/ratijas/kde/src6/plasma-workspace/.git": "pw6",
+		"/home/ratijas/kde/src6/plasma-framework/.git": "pf6",
+		"/home/ratijas/kde/src5/plasma-workspace/.git": "pw5",
+		"/home/ratijas/kde/src6/plasma-desktop/.git": "pd6",
+		"/home/ratijas/kde/src6/kdeplasma-addons/.git": "kpa6",
+		"/home/ratijas/kde/src5/plasma-framework/.git": "pf5",
+	},
+	"commit_graph_ordering": "commit_date",
+	"display_author_date": true,
+	"update_check": true,
+	"diff_algorithm": "match_git",
 }

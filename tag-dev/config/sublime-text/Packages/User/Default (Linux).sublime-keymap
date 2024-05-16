@@ -1,10 +1,17 @@
 [
+    { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
+
     { "keys": ["ctrl+b"], "command": "goto_definition" },
     { "keys": ["ctrl+alt+l"], "command": "split_selection_into_lines" },
 
     { "keys": ["ctrl+l"], "command": "expand_selection_to_line_downwards" },
     { "keys": ["ctrl+shift+l"], "command": "expand_selection_to_line_upwards" },
     { "keys": ["ctrl+alt+shift+c"], "command": "run_macro_file", "args": {"file": "res://Packages/User/std..as_const.sublime-macro"}},
+    { "keys": ["ctrl+alt+shift+l"], "command": "run_macro_file", "args": {"file": "res://Packages/User/operator_s.sublime-macro"}},
+    { "keys": ["ctrl+alt+shift+s"], "command": "insert_snippet", "args": {"contents": "\nusing namespace Qt::StringLiterals;\n"}},
+
+    { "keys": ["alt+backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/User/delete subword left.sublime-macro"}},
+    { "keys": ["alt+delete"], "command": "run_macro_file", "args": {"file": "res://Packages/User/delete subword right.sublime-macro"}},
 
     { "keys": ["shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"}, "context":
         [
@@ -12,6 +19,13 @@
             { "key": "panel_has_focus", "operator": "equal", "operand": false }
         ]
     },
+    { "keys": ["shift+alt+space"], "command": "run_macro_file", "args": {"file": "res://Packages/User/spaceback.sublime-macro"}, "context":
+        [
+            { "key": "overlay_has_focus", "operator": "equal", "operand": false },
+            { "key": "panel_has_focus", "operator": "equal", "operand": false }
+        ]
+    },
+    { "keys": ["ctrl+k", "ctrl+shift+u"], "command": "run_macro_file", "args": {"file": "res://Packages/User/Upper case next letter.sublime-macro"} },
     {
         "command": "lsp_symbol_definition",
         "args": {
@@ -66,5 +80,46 @@
     {
         "command": "check_time_overlap",
         "keys": ["ctrl+k", "ctrl+t", "ctrl+o"]
+    },
+    {
+        "command": "lsp_symbol_references",
+        "keys": ["ctrl+alt+b"],
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operator": "equal",
+                "operand": "definitionProvider"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+shift+alt+t"],
+        "command": "open_terminal_project_folder"
+    },
+    {
+        "command": "convert_between_property_and_signal_handler",
+        "keys": ["ctrl+alt+shift+h"],
+        "context": [
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "source.qml"
+            }
+        ]
+    },
+    {
+        "command": "exec",
+        "args": { "cmd": ["/home/ratijas/bin/e", "--build"] },
+        "keys": ["alt+f7"]
+    },
+    {
+        "command": "exec",
+        "args": { "cmd": ["/home/ratijas/bin/e", "--run"] },
+        "keys": ["shift+f7"]
+    },
+    {
+        "command": "exec",
+        "args": { "cmd": ["/home/ratijas/bin/e"] },
+        "keys": ["alt+shift+f7"]
     }
 ]

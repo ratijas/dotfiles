@@ -1,0 +1,30 @@
+[
+
+	{
+		"args":
+		{
+			"to": "scope"
+		},
+		"command": "expand_selection"
+	},
+	{
+		"command": "cut"
+	},
+	{
+		"args":
+		{
+			"characters": "u"
+		},
+		"command": "insert"
+	},
+	{
+		"command": "paste"
+	},
+	{
+		"args":
+		{
+			"characters": "_s"
+		},
+		"command": "insert"
+	}
+]

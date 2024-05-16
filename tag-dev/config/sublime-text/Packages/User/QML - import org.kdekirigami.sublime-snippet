@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+import org.kde.kirigami 2.20 as Kirigami
+]]></content>
+    Optional: Set a tabTrigger to define how to trigger the snippet
+    <tabTrigger>kirigami</tabTrigger>
+    Optional: Set a scope to limit where the snippet will trigger
+    <scope>source.qml - meta.block.qml</scope>
+</snippet>
