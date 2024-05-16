@@ -1,6 +1,7 @@
 set disassembly-flavor intel
 set pagination off
+set debuginfod enabled on
 
 # set auto-load scripts-directory $debugdir:$datadir/auto-load:/home/ratijas/.gdb-autoload
 # set auto-load safe-path         $debugdir:$datadir/auto-load:/home/ratijas/.gdb-autoload
-source /home/ratijas/kde/src/kde/kdesdk/kde-dev-scripts/gdb/load-qt5printers.py
+# source /home/ratijas/kde/src/kde-dev-scripts/gdb/load-qt5printers.py

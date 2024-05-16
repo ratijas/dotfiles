@@ -1,18 +1,17 @@
 # kdesrc-build related utilities
 
-function kde-rebuild-only() {
-  kdesrc-build --no-src --no-include-dependencies $@
-}
+export ZSH_KF_VERSION=6
 
-alias world=kde-rebuild-world
-alias world6="kde-rebuild-world --rc-file=$HOME/.config/kf6.kdesrc-buildrc"
+function world() {
+  world-${ZSH_KF_VERSION} $@
+}
 
 typeset -ga KDESRC_CACHED_MODULES
 
 # List modules that can be built
 function kls() {
   if [ -z "$KDESRC_CACHED_MODULES" ]; then
-    KDESRC_CACHED_MODULES=($(kdesrc-build --list-build --no-src | head -n -1 | cut -d' ' -f 3))
+    KDESRC_CACHED_MODULES=($(kdesrc-build --rc-file=$HOME/.config/kdesrc-buildrc --list-build --no-src | head -n -1 | cut -d' ' -f 3))
     if [ $? -ne 0 ]; then
       return 1
     fi
@@ -38,7 +37,7 @@ function kdesrc-query-global() {
     fi
   fi
   local value
-  value=$(grep "^\s*$param" ~/.config/kdesrc-buildrc | awk '{ print $2 }')
+  value=$(grep "^\s*$param" $HOME/.config/kdesrc-buildrc | awk '{ print $2 }')
   if [ $? -ne 0 ]; then
     return 1
   fi
@@ -91,7 +90,6 @@ function kcd() {
   target=$(
     fd -d 3 -t d "$module$" \
       "$srcdir" \
-      "$srcdir/kde/kdegraphics/libs/" \
       "$builddir" \
       |
     grep -v log |
@@ -111,54 +109,62 @@ compdef _kcd kcd
 
 # p10k integration
 prompt_kf_version() {
-  local ver=5
   local fg="white"
   local bg="magenta"
-  if (( $LD_LIBRARY_PATH[(I)/usr/local/kde6/lib] )) ; then
-    ver=6
-    bg=darkseagreen
-  fi
+  local label="KF5"
 
-  _p9k_prompt_segment "$0" "$bg" "$fg" 'VCS_BRANCH_ICON' 0 '' "KF$ver"
+  case "${ZSH_KF_VERSION}" in
+    "6" )
+      bg="darkseagreen"
+      label="KF6"
+      ;;
+    "6-static" )
+      bg="darkseagreen"
+      label="KF6 Static"
+      ;;
+    "qt6-dev" )
+      bg="mediumvioletred"
+      label="Qt6"
+      ;;
+  esac
+
+  _p9k_prompt_segment "$0" "$bg" "$fg" 'VCS_BRANCH_ICON' 0 '' "$label"
 }
 
 _p9k_prompt_kf_init() {
   typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[kdesrc-build]'
 }
 
+alias kf="source kf.env"
 alias kf6="source kf6.env"
-alias kcd6="cd $HOME/kde/src-kf6"
+alias kf5="source kf5.env"
+alias kf6-static="source kf6-static.env"
+alias qt6-dev="source qt6-dev.env"
 
 # Mnemonics:
 
 alias pv="plasmoidviewer -a"
 
-# Build
-alias kb="kdesrc-build --no-include-dependencies --no-src"
-# ReBuild
-alias krb="kdesrc-build --no-include-dependencies --no-src --refresh-build"
-# Source
-alias ks="kdesrc-build --no-include-dependencies --src-only"
-# Source & Build
-alias ksb="kdesrc-build --no-include-dependencies"
+alias k="kdesrc-build"
+
 # Run
 alias kr="kdesrc-run"
 
 # Build Plasma Framworks
-alias kbpf="kb plasma-framework"
+alias kbpf="kb libplasma"
 # Build Plasma Workspace
 alias kbpw="kb plasma-workspace"
 # Build Plasma Desktop
 alias kbpd="kb plasma-desktop"
 # Build Plasma
-alias kbp="kb plasma-framework plasma-workspace plasma-desktop"
+alias kbp="kb libplasma plasma-workspace plasma-desktop"
 # Build Plasma & Restart
 function kbpr() {
-  kb plasma-framework plasma-workspace plasma-desktop $@
+  kb libplasma plasma-workspace plasma-desktop $@
   fix-plasma
 }
 compdef kbpr=kdesrc-build
-compdef kde-rebuild-world=kdesrc-build
+compdef world=kdesrc-build
 
 # KScreen stuff
 alias kd="kscreen-doctor"
@@ -166,18 +172,21 @@ alias kdo="kscreen-doctor -o"
 function ksc() {
   kb --stop-on-failure plasma-wayland-protocols libkscreen kscreen kwin plasma-workspace
   systemctl --user restart plasma-kscreen.service plasma-kded.service plasma-plasmashell.service plasma-kwin_x11.service
-  kcmshell5 kcm_kscreen
+  kcmshell6 kcm_kscreen
 }
 function kscreen-aoc-setup-x11() {
   kscreen-doctor output.DP-3.enable output.DP-3.mode.2560x1440@120 output.DP-3.position.0,0 output.DP-2.enable output.DP-2.position.2560,360
 }
 
-alias kcmshell=kcmshell5
+# alias kcmshell=kcmshell5
 
 # KF6
-alias k6="kdesrc-build --rc-file=$HOME/.config/kf6.kdesrc-buildrc"
+# alias k6="kdesrc-build --rc-file=$HOME/.config/kf6.kdesrc-buildrc"
+alias k6="kdesrc-build --rc-file=$HOME/.config/kdesrc-buildrc"
 # Source
 alias ks6="k6 --no-include-dependencies --src-only"
+# Source & Build
+alias ksb6="k6 --no-include-dependencies"
 # Build
 alias kb6="k6 --no-include-dependencies --no-src"
 # ReBuild
@@ -185,3 +194,35 @@ alias krb6="k6 --no-include-dependencies --no-src --refresh-build"
 # There's no --rc-file= support in kdesrc-run?
 # Run
 alias kr6="k6 --run"
+
+
+# Qt6 (dev)
+alias kq="kdesrc-build --rc-file=$HOME/.config/qt6-dev.kdesrc-buildrc"
+# Source
+alias ksq="kq --no-include-dependencies --src-only"
+# Build
+alias kbq="kq --no-include-dependencies --no-src"
+# ReBuild
+alias krbq="kq --no-include-dependencies --no-src --refresh-build"
+
+function reset_env() {
+  path=("${(@)path:#/usr/local/kde*}")
+  export PATH
+
+  export LD_LIBRARY_PATH=
+  export XDG_DATA_DIRS=
+  export XDG_CONFIG_DIRS=
+
+  export QT_PLUGIN_PATH=
+  export QML2_IMPORT_PATH=
+
+  export QT_QUICK_CONTROLS_STYLE_PATH=
+
+  export ZSH_KF_VERSION=5
+}
+
+alias k=k6
+alias kb=kb6
+alias krb=krb6
+alias ks=ks6
+alias ksb=ksb6

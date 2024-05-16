@@ -96,13 +96,13 @@ class CheckTimeOverlapCommand(sublime_plugin.TextCommand):
             if end_string_content_region is None: continue
 
             try:
-                end_str = self.view.substr(end_string_content_region).rstrip('Z')
+                end_str = self.view.substr(end_string_content_region).rstrip('Z').replace(' ', '')
                 end_time = datetime.fromisoformat(end_str)
             except ValueError as e:
                 start_string_content_region = attr_content_region(self.view, first, "start")
                 if start_string_content_region is None: continue
 
-                start_str = self.view.substr(start_string_content_region).rstrip('Z')
+                start_str = self.view.substr(start_string_content_region).rstrip('Z').replace(' ', '')
                 start_time = datetime.fromisoformat(start_str)
 
                 try:
@@ -115,7 +115,7 @@ class CheckTimeOverlapCommand(sublime_plugin.TextCommand):
             start_string_content_region = attr_content_region(self.view, second, "start")
             if start_string_content_region is None: continue
 
-            start_str = self.view.substr(start_string_content_region).rstrip('Z')
+            start_str = self.view.substr(start_string_content_region).rstrip('Z').replace(' ', '')
             start_time = datetime.fromisoformat(start_str)
 
             if end_time > start_time:
