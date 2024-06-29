@@ -1,6 +1,0 @@
-typeset -g QT_DIR="$HOME/projects/q/qt5"
-
-source "${QT_DIR}/scripts.zsh"
-source "${QT_DIR}/env.sh"
-
-pushd "${QT_DIR}"

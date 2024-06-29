@@ -135,9 +135,7 @@ _p9k_prompt_kf_init() {
   typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[kdesrc-build]'
 }
 
-alias kf="source kf.env"
 alias kf6="source kf6.env"
-alias kf5="source kf5.env"
 alias kf6-static="source kf6-static.env"
 alias qt6-dev="source qt6-dev.env"
 
