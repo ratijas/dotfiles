@@ -17,6 +17,9 @@ alias RTL_='export LANGUAGE=ar:en_US LANG=ar_EG.UTF-8 LC_ALL='
 alias RU='LANGUAGE=ru_RU:ru LANG=ru_RU LC_ALL=ru_RU.UTF-8'
 alias RU_='export LANGUAGE=ru_RU:ru LANG=ru_RU LC_ALL=ru_RU.UTF-8'
 
+alias DE='LANGUAGE=de_DE:de LANG=de_DE LC_ALL=de_DE.UTF-8'
+alias DE_='export LANGUAGE=de_DE:de LANG=de_DE LC_ALL=de_DE.UTF-8'
+
 alias QDS='QT_QUICK_CONTROLS_STYLE=org.kde.desktop'
 alias QDS_='export QT_QUICK_CONTROLS_STYLE=org.kde.desktop'
 

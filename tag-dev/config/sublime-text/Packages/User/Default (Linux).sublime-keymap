@@ -109,17 +109,17 @@
     },
     {
         "command": "exec",
-        "args": { "cmd": ["/home/ratijas/bin/e", "--build"] },
+        "args": { "cmd": ["konsole", "-e", "/home/ratijas/bin/e", "--build"] },
         "keys": ["alt+f7"]
     },
     {
         "command": "exec",
-        "args": { "cmd": ["/home/ratijas/bin/e", "--run"] },
+        "args": { "cmd": ["konsole", "-e", "/home/ratijas/bin/e", "--run"] },
         "keys": ["shift+f7"]
     },
     {
         "command": "exec",
-        "args": { "cmd": ["/home/ratijas/bin/e"] },
+        "args": { "cmd": ["konsole", "-e", "/home/ratijas/bin/e"] },
         "keys": ["alt+shift+f7"]
     }
 ]

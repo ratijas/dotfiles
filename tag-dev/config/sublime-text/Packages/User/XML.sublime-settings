@@ -1,7 +1,8 @@
 {
 	"extensions":
 	[
-		"qrc",
 		"ts",
+		"qrc",
+		"xml.dist",
 	],
 }

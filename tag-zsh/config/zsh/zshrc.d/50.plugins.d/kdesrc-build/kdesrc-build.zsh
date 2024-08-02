@@ -161,8 +161,8 @@ function kbpr() {
   kb libplasma plasma-workspace plasma-desktop $@
   fix-plasma
 }
-compdef kbpr=kdesrc-build
-compdef world=kdesrc-build
+# compdef kbpr=kdesrc-build
+# compdef world=kdesrc-build
 
 # KScreen stuff
 alias kd="kscreen-doctor"

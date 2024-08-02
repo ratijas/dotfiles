@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"ApplySyntax",
 		"Clang Format",
 		"CMake",
 		"Debugger",
@@ -14,6 +15,7 @@
 		"Expand Selection to Line Upwards",
 		"Expand Selection to Whitespace",
 		"HLSL Syntax",
+		"Indent XML",
 		"IRC Syntax",
 		"JSON Reindent",
 		"kdesrc-build",
