@@ -7,3 +7,6 @@
 
 [alias]
 	openterminalatpath = "!f() { konsole --new-tab --workdir \"$1\" > /dev/null 2>&1 & disown ; }; f"
+
+[http]
+	cookiefile = /home/ratijas/.gitcookies

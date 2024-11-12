@@ -15,7 +15,7 @@
 [diff]
 	submodule = log
 [commit]
-	gpgsign = true
+	gpgsign = false
 [tag]
 	gpgSign = true
 [rerere]
