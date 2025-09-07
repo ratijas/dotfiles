@@ -1,0 +1,179 @@
+#!/bin/sh
+
+: ${RCM_LIB:=$(dirname "$0")}
+. "$RCM_LIB/rcm.sh"
+
+destination() {
+  local dotfiles_dir="$1"
+  local dotless="$2"
+  local in_host="$3"
+  local tag="$4"
+
+  $DEBUG "destination $dotfiles_dir $dotless $in_host $tag"
+
+  if [ "x$tag" != "x" ]; then
+    echo "$dotfiles_dir/tag-$tag"
+  elif [ $in_host = 1 ]; then
+    echo "$dotfiles_dir/host-$HOSTNAME"
+  else
+    echo "$dotfiles_dir"
+  fi
+}
+
+exit_if_dangerous() {
+  local file="$1"
+
+  if [ -L "$file" ]; then
+      $ERROR 1 "'$file' is a symlink. Cannot process file."
+  elif is_nested "$file"; then
+    # Remove DEST_DIR in case one folder of $HOME is a symlink
+    saved_ifs="$IFS"
+    IFS=/
+    set -- $(dirname "$file" | sed "s|$DEST_DIR/||")
+    IFS="$saved_ifs"
+
+    built_dir="$DEST_DIR"
+    for dir in $@; do
+      built_dir="$built_dir/$dir"
+      if [ -L "$built_dir" ]; then
+        $ERROR 1 "'$file' path contains a symlink ($dir). Cannot process file."
+      fi
+    done
+  fi
+}
+
+only_one_dir() {
+  local dotfiles="$1"
+
+  if [ ! -z "$OPT_DOTFILES_DIR" ]; then
+    echo_stderr "Only one '-d' option is allowed in mkrc."
+    show_help 64
+  else
+    OPT_DOTFILES_DIR="$dotfiles"
+  fi
+}
+
+show_help() {
+  local exit_code=${1:-0}
+
+  $PRINT "Usage: mkrc [-ChSsUuVvqokK] [-t TAG] [-d DIR] [-B HOSTNAME] FILES ..."
+  $PRINT "see mkrc(1) and rcm(7) for more details"
+
+  exit $exit_code
+}
+
+if [ $# -eq 0 ]; then
+  show_help 64
+fi
+
+tag=
+hostname=
+verbosity=0
+in_host=0
+version=0
+always_copy=0
+force_symlink=50
+undotted=50
+install_args=
+
+while getopts :ChSsUuVvqot:d:B:kK opt; do
+  case "$opt" in
+    C) always_copy=1 ;;
+    h) show_help ;;
+    t) tag="$OPTARG" ;;
+    v) verbosity=$(($verbosity + 1)) ;;
+    q) verbosity=$(($verbosity - 1)) ;;
+    o) in_host=1 ;;
+    d) only_one_dir "$OPTARG" ;;
+    V) version=1 ;;
+    S) force_symlink=1 ;;
+    s) force_symlink=0 ;;
+    U) undotted=1 ;;
+    u) undotted=0 ;;
+    B)
+      in_host=1
+      hostname="$OPTARG"
+      install_args=$(append_variable "$install_args" "-B $hostname")
+      ;;
+    k)
+      install_args=$(append_variable "$install_args" "-k")
+      ;;
+    K)
+      install_args=$(append_variable "$install_args" "-K")
+      ;;
+    ?) show_help 64 ;;
+  esac
+done
+shift $(($OPTIND-1))
+
+handle_common_flags mkrc $version $verbosity
+HOSTNAME="$(determine_hostname "$hostname")"
+
+if [ $in_host -eq 1 -a "x$tag" != "x" ]; then
+  $ERROR 1 "Cannot specify both -o and -t"
+fi
+
+if [ $always_copy -eq 1 ]; then
+  INSTALL="$INSTALL -C"
+fi
+
+files=""
+for i; do
+  exit_if_dangerous "$i"
+  files="$(printf "$files\n$i")"
+done
+
+for DOTFILES_DIR in "$OPT_DOTFILES_DIR" $DOTFILES_DIRS "$DEFAULT_DOTFILES_DIR"; do
+  if [ -d "$DOTFILES_DIR" ]; then
+    break
+  else
+    unset DOTFILES_DIR
+  fi
+done
+
+if [ -z "$DOTFILES_DIR" ]; then
+  $ERROR 1 "No dotfiles directories found in $OPT_DOTFILES_DIR${OPT_DOTFILES_DIR:+ }$DEFAULT_DOTFILES_DIR"
+fi
+
+if [ $force_symlink -eq 1 ]; then
+  for file in $files; do
+    dedotted="$(de_dot "$file")"
+    INSTALL="$INSTALL -S $dedotted"
+  done
+elif [ $force_symlink -eq 0 ]; then
+  for file in $files; do
+    dedotted="$(de_dot "$file")"
+    INSTALL="$INSTALL -s $dedotted"
+  done
+fi
+
+if [ $undotted -eq 1 ]; then
+  for file in $files; do
+    dedotted="$(de_dot "$file")"
+    INSTALL="$INSTALL -U $dedotted"
+  done
+elif [ $undotted -eq 0 ]; then
+  for file in $files; do
+    dedotted="$(de_dot "$file")"
+    INSTALL="$INSTALL -u $dedotted"
+  done
+fi
+
+saved_IFS="$IFS"
+IFS='
+'
+for file in $files; do
+  IFS="$saved_IFS"
+  case "$file" in
+    /*) : ;;
+    *) [ -e "$PWD/$file" ] && file="$PWD/$file" ;;
+  esac
+
+  dotless="$(de_dot "$file")"
+  dest="$(destination "$DOTFILES_DIR" "$dotless" $in_host "$tag")"
+  mkdir -p "$dest/$(dirname "$dotless")"
+  $VERBOSE "Moving..."
+  mv_v "$file" "$dest/$dotless"
+  $VERBOSE "Linking..."
+  $INSTALL -d "$DOTFILES_DIR" -t "${tag:--}" $install_args "$dotless"
+done

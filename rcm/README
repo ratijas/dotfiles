@@ -1,0 +1,7 @@
+Extracted from ArchLinux AUR package for rcm-1.3.6-1
+
+Scripts and the common / "library" rcm.sh are bundled together in a single directory. The path to rcm.sh was modified in the header of each script.
+
+export PATH="$PATH:$HOME/.dotfiles/rcm"
+
+echo 'export PATH="$PATH:$HOME/.dotfiles/rcm"' >> ~/.bashrc
