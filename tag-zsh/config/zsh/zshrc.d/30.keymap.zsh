@@ -34,6 +34,7 @@ bindkey '\eh' run-help  # Alt+h
 # Complete on tab
 bindkey '^i' expand-or-complete-prefix
 bindkey '^[[Z' reverse-menu-complete
+bindkey "^Xa" _expand_alias
 
 # History scrolling on multiline boundaries
 # bindkey '^[[A' up-line-or-search  # Up

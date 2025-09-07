@@ -11,6 +11,7 @@
 	"ignored_packages":
 	[
 		"Debugger",
+		"kdesrc-build",
 		"LSP-json",
 		"LSP-pyright",
 		"Rust",
@@ -117,4 +118,6 @@
 		"gray_antialias",
 	],
 	"index_files": true,
+	"sidebar_on_right": true,
+	"git_diff_target": "head",
 }

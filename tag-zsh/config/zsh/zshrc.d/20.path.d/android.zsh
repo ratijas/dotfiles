@@ -6,8 +6,8 @@ if [[ -d /opt/android-sdk ]]; then
     export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 fi
 
-if [[ -d /home/ratijas/Android/Sdk ]]; then
-    export ANDROID_SDK_ROOT=/home/ratijas/Android/Sdk
+if [[ -d $HOME/Android/Sdk ]]; then
+    export ANDROID_SDK_ROOT=$HOME/Android/Sdk
     export ANDROID_NDK=$ANDROID_SDK_ROOT/ndk/$(ls -1 $ANDROID_SDK_ROOT/ndk | head -1)
     export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
     export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin

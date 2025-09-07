@@ -45,4 +45,9 @@
 	"display_author_date": true,
 	"update_check": true,
 	"diff_algorithm": "match_git",
+	/*"editor_path": "code",*/
+	/*"editor_argument_format": "--goto ${file}:${line}:${col}",*/
+	/*"editor_argument_format": "code \"${file}:${line}:${col}\"",*/
+	/*"editor_path": "code",*/
+	/*"editor_argument_format": "--goto ${file}:${line}:${col}",*/
 }

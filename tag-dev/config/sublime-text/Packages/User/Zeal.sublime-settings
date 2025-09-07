@@ -5,4 +5,5 @@
             "selector": "source.qml, source.qmldir"
         }
     ],
+    "fallback": "none",
 }

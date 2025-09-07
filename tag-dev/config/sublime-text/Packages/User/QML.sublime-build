@@ -48,34 +48,54 @@
         //         "LC_ALL": "",
         //     }
         // },
-        {
-            "name": "Qt 6 (kqml)",
-            "cmd": ["/usr/local/kde/usr/bin/kqml", "$file"],
-            "env": {
-                "PATH": "/usr/local/kde/usr/bin:$PATH",
-                "LD_LIBRARY_PATH": "/usr/local/kde/usr/lib:$LD_LIBRARY_PATH",
-                "XDG_DATA_DIRS": "/usr/local/kde/usr/share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}",
-                "XDG_CONFIG_DIRS": "/usr/local/kde/usr/etc/xdg:${XDG_CONFIG_DIRS:-/etc/xdg}",
-                "QT_PLUGIN_PATH": "/usr/local/kde/usr/lib/plugins:/usr/local/kde/usr/lib/qt6/plugins",
-                "QML2_IMPORT_PATH": "/usr/local/kde/usr/lib/qml:/usr/local/kde/usr/lib/qt6/qml",
-                "QT_QUICK_CONTROLS_STYLE_PATH": "/usr/local/kde/usr/lib/qml/QtQuick/Controls.2/",
+        // {
+        //     "name": "Qt 6 (kqml)",
+        //     "cmd": ["/usr/local/kde/usr/bin/kqml", "$file"],
+        //     "env": {
+        //         "PATH": "/usr/local/kde/usr/bin:$PATH",
+        //         "LD_LIBRARY_PATH": "/usr/local/kde/usr/lib:$LD_LIBRARY_PATH",
+        //         "XDG_DATA_DIRS": "/usr/local/kde/usr/share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}",
+        //         "XDG_CONFIG_DIRS": "/usr/local/kde/usr/etc/xdg:${XDG_CONFIG_DIRS:-/etc/xdg}",
+        //         "QT_PLUGIN_PATH": "/usr/local/kde/usr/lib/plugins:/usr/local/kde/usr/lib/qt6/plugins",
+        //         "QML2_IMPORT_PATH": "/usr/local/kde/usr/lib/qml:/usr/local/kde/usr/lib/qt6/qml",
+        //         "QT_QUICK_CONTROLS_STYLE_PATH": "/usr/local/kde/usr/lib/qml/QtQuick/Controls.2/",
 
+        //         "QT_FORCE_STDERR_LOGGING": "1",
+        //         "QT_QUICK_CONTROLS_STYLE": "org.kde.desktop",
+        //     }
+        // },
+        // {
+        //     "name": "Qt 6 (kqml), RTL",
+        //     "cmd": ["/usr/local/kde/usr/bin/kqml", "$file"],
+        //     "env": {
+        //         "PATH": "/usr/local/kde/usr/bin:$PATH",
+        //         "LD_LIBRARY_PATH": "/usr/local/kde/usr/lib:$LD_LIBRARY_PATH",
+        //         "XDG_DATA_DIRS": "/usr/local/kde/usr/share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}",
+        //         "XDG_CONFIG_DIRS": "/usr/local/kde/usr/etc/xdg:${XDG_CONFIG_DIRS:-/etc/xdg}",
+        //         "QT_PLUGIN_PATH": "/usr/local/kde/usr/lib/plugins:/usr/local/kde/usr/lib/qt6/plugins",
+        //         "QML2_IMPORT_PATH": "/usr/local/kde/usr/lib/qml:/usr/local/kde/usr/lib/qt6/qml",
+        //         "QT_QUICK_CONTROLS_STYLE_PATH": "/usr/local/kde/usr/lib/qml/QtQuick/Controls.2/",
+
+        //         "QT_FORCE_STDERR_LOGGING": "1",
+        //         "QT_QUICK_CONTROLS_STYLE": "org.kde.desktop",
+
+        //         "LANGUAGE": "ar:en_US",
+        //         "LANG": "ar_EG.UTF-8",
+        //         "LC_ALL": "",
+        //     }
+        // }
+        {
+            "name": "Qt 6 (System qml6)",
+            "cmd": ["/usr/bin/qml6", "$file"],
+            "env": {
                 "QT_FORCE_STDERR_LOGGING": "1",
                 "QT_QUICK_CONTROLS_STYLE": "org.kde.desktop",
             }
         },
         {
-            "name": "Qt 6 (kqml), RTL",
-            "cmd": ["/usr/local/kde/usr/bin/kqml", "$file"],
+            "name": "Qt 6 (System qml6), RTL",
+            "cmd": ["/usr/bin/qml6", "$file"],
             "env": {
-                "PATH": "/usr/local/kde/usr/bin:$PATH",
-                "LD_LIBRARY_PATH": "/usr/local/kde/usr/lib:$LD_LIBRARY_PATH",
-                "XDG_DATA_DIRS": "/usr/local/kde/usr/share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}",
-                "XDG_CONFIG_DIRS": "/usr/local/kde/usr/etc/xdg:${XDG_CONFIG_DIRS:-/etc/xdg}",
-                "QT_PLUGIN_PATH": "/usr/local/kde/usr/lib/plugins:/usr/local/kde/usr/lib/qt6/plugins",
-                "QML2_IMPORT_PATH": "/usr/local/kde/usr/lib/qml:/usr/local/kde/usr/lib/qt6/qml",
-                "QT_QUICK_CONTROLS_STYLE_PATH": "/usr/local/kde/usr/lib/qml/QtQuick/Controls.2/",
-
                 "QT_FORCE_STDERR_LOGGING": "1",
                 "QT_QUICK_CONTROLS_STYLE": "org.kde.desktop",
 
