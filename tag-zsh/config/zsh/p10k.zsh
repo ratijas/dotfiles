@@ -33,6 +33,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # os_icon               # os identifier
     context                 # user@hostname
+    toolbox                 # toolbox name (https://github.com/containers/toolbox)
     dir                     # current directory
     vcs                     # git status
     # prompt_char           # prompt symbol
