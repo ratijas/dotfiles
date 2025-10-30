@@ -14,6 +14,9 @@ mkdir -p "${WGETRC:h}"
   touch "$WGETRC"
 }
 
+# SSH Agent started by systemctl --user enable --now ssh-agent.socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 fpath=(
   $HOME/.config/zsh/functions
   $HOME/.config/zsh/functions/Misc
